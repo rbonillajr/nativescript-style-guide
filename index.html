@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>NativeScript Style Guide</title>
+
+	<meta charset="utf-8">
+	<meta name="description" content="An opinionated guide to building mobile apps with NativeScript">
+	<meta name="author" content="TJ VanToll">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="http://fonts.googleapis.com/css?family=Roboto+Slab:300,400" rel="stylesheet">
+	<link href="bower_components/kendo-ui/styles/kendo.common.min.css" rel="stylesheet">
+	<link href="bower_components/kendo-ui/styles/kendo.uniform.min.css" rel="stylesheet">
+	<link href="bower_components/normalize-css/normalize.css" rel="stylesheet">
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+	<link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="bower_components/SyntaxHighlighter/styles/shCore.css" rel="stylesheet">
+	<link href="bower_components/SyntaxHighlighter/styles/shThemeDefault.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	<!--[if lt IE 9]>
+		<script src="//cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+
+<div id="container">
+	<div id="header"><div>
+	<i class="fa fa-bars fa-align-center fa-lg float-left header-btn" id="toggle-toc"></i>
+	<a href="https://github.com/tjvantoll/nativescript-style-guide" target="_blank" class="fa fa-github fa-align-center fa-lg float-right header-btn" id="github"></a>
+	<h1>NativeScript Style Guide</h1>
+</div>
+</div>
+
+<div id="content"><div>
+<div id="splitter">
+					<div id="toc">
+						 <div id="author">by <a href="http://www.codylindley.com" target="_blank">cody lindley</a> v 1.0</div>
+						<div id="toc-padding"></div>
+					</div>
+					<div id="book">
+						<div id="center-book">
+							<img src="images/Ninja-1.png" class="ninja noBorder" style="margin-top:125px" />
+
+							<div id="toc1" class="toc">
+								<h2>Introduction</h2>
+
+								<h3>What Is This?</h3>
+								<p>This is an opinionated guide prescribing the ideal usage of <a href="http://docs.telerik.com/kendo-ui/mobile/introduction">Kendo UI mobile widgets and application tools</a> for building <a href="http://www.webplatform.org/">web platform</a> sites or applications to be run on phones and tablets.</p>
+
+								<div class="note">
+									<div class="notes-title">Notes</div>
+									<div class="notes">
+										<ul>
+											<li>Kendo UI Mobile can optionally be integrated with AngularJS, however this guide will not be covering that integration. If you would like to use Kendo UI Mobile with Angular, you can refer to the following tutorial, <a href="http://docs.telerik.com/kendo-ui/mobile/angular/sushi-angular-tutorial">"Building applications with Kendo UI Mobile and AngularJS"</a></li>
+										</ul>
+									</div>
+								</div>
+
+								<h3>Why Use Kendo UI Mobile?</h3>
+
+								<p>Kendo UI provides specific touch first widgets, to be used in the construction of phone and tablet web-platform interfaces. In addition to widgets, Kendo UI also provides application logic for building a <a href="http://en.wikipedia.org/wiki/Single-page_application">Single Page Application</a> in a mobile browser or webview (i.e. <a href="http://docs.telerik.com/kendo-ui/mobile/application">Application</a>, <a href="http://docs.telerik.com/kendo-ui/mobile/view">View</a>, <a href="http://docs.telerik.com/kendo-ui/mobile/layout">Layout</a>). In this guide, I will refer to the application logic that is provided by Kendo UI as "mobile application logic" (i.e. <code>kendo.mobile.Application</code>).</p>
+
+								<p>While Kendo UI widgets can <a href="http://docs.telerik.com/kendo-ui/mobile/regular-usage">run standalone</a>, without an active mobile <code>application</code> instance, this guide assumes the use of the mobile application logic in conjunction with the mobile widgets. Unless you are bringing a replacement for the application logic provided by <code>kendo.mobile.Application</code> (e.g. Angular + ng-view + ng-router), the application logic will almost always be needed alongside the mobile widgets.</p>
+
+								<div class="note">
+									<div class="notes-title">Notes</div>
+									<div class="notes">
+										<ul>
+											<li>Using the Kendo UI mobile SPA application logic is not strictly required for the widgets to function. Kendo UI mobile widgets can be used anywhere with any SPA framework. They can run standalone for use alongside any Kendo UI web or data visualization widget (i.e. not just mobile widgets) in any web platform environment.</li>
+											<li>The Kendo UI mobile solution does favor <a href="http://docs.telerik.com/kendo-ui/mobile/angular/angular">integration with Angular</a> (directives are provided), but Angular is not strictly required if the default SPA application logic is not used.</li>
+										</ul>
+									</div>
+								</div>
+
+								<!--<h3>What is a hybrid mobile/tablet app?</h3>
+								<p><a href="http://en.wikipedia.org/wiki/Hybrid_application">Wikipedia</a> offers a good definition (altered slightly for clarity): </p>
+
+								<blockquote>"Hybrid apps, like native apps, run on the device, and are written with web technologies (HTML, CSS and JavaScript). Hybrid apps run inside a native container (aka webview), and leverage the device’s browser engine (but not the browser itself i.e. Safari) to render the HTML and process the JavaScript locally in the native container. A web-to-native abstraction layer (e.g. cordova) enables access to device capabilities that are not accessible in Mobile/Tablet Web applications, such as the accelerometer, camera and local storage."</blockquote>
+
+								<h3>Why build hybrid mobile/tablet apps?</h3>
+
+								<p>Built and packaged correctly, the goal of a hybrid app is to be <a href="https://www.youtube.com/watch?v=hHk1ENkwWq8">virtually indistinguishable to end-users from a native app</a>. The advantage of building apps with HTML, CSS, and JavaScript is that developers can maintain a single code base to target all major platforms (ios, android, windows phone). Your team can focus on HTML, CSS, and JavaScript development rather than being average practitioners of Objective-C, Java, .NET and the myriad of other developer skills need for cross-platform mobile app development.</p>-->
+
+							</div>
+
+							<div id="toc2" class="toc">
+								<h2>Who Should Read This?</h2>
+								<p>This guide is targeted at front-end developers who have an intermediate understanding of developing applications using HTML, CSS, and JavaScript (e.g. SPA applications using MVVM) and want to use these skills to build a phone or tablet application using Kendo UI mobile solutions.</p>
+							</div>
+
+							<div id="toc3" class="toc">
+								<h2>Prerequisites</h2>
+
+								<p>A reader will gain the most from this guide if they already have a good understanding of Kendo UI solutions and JavaScript application concepts/tools. Be aware and prepared that some knowledge is imparted and some knowledge is assumed about the following:</p>
+
+								<ul>
+									<li><strong>Single Page Applications</strong> - <a href="http://en.wikipedia.org/wiki/Single-page_application">What is it?</a></li>
+									<li><strong>Kendo UI Mobile Widgets &amp; Application Logic</strong> - <a href="http://blogs.telerik.com/blogs/14-02-27/getting-started-with-kendo-ui-mobile-in-appbuilder">Learn it</a> | <a href="http://docs.telerik.com/kendo-ui/api/javascript/mobile/application">Docs</a><ul>
+											<li><a href="http://docs.telerik.com/kendo-ui/mobile/mvvm">Using Kendo MVVM in a mobile application</a></li>
+											<li><a href="http://docs.telerik.com/kendo-ui/mobile/view#view-parameters">View Parameters</a></li>
+										</ul>
+									</li>
+									<li><strong>Declarative JavaScript</strong> - <a href="http://www.tysoncadenhead.com/blog/the-state-of-javascript-a-shift-from-imperative-to-declarative#.VE60UZPF9-o">What is it?</a> | <a href="http://docs.telerik.com/kendo-ui/basics/markup#kendo-ui-mobile-application-with-a-view-and-an-autocomplete-widget">Learn it</a></li>
+									<li><strong>MVVM/Data Binding (specifically Kendo UI MVVM)</strong> - <a href="http://addyosmani.com/blog/understanding-mvvm-a-guide-for-javascript-developers/">What is it?</a> | <a href="http://blogs.telerik.com/kendoui/posts/12-03-09/bind_this_a_look_at_kendo_ui_mvvm">learn it</a> | <a href="http://docs.telerik.com/kendo-ui/framework/mvvm/overview">Docs</a></li>
+									<li><strong>Kendo UI DataSource</strong> - <a href="http://demos.telerik.com/kendo-ui/datasource/index">What is it?</a> | <a href="http://blogs.telerik.com/kendoui/posts/13-01-24/learning_kendo_data_datasource">Learn it</a> | <a href="http://docs.telerik.com/kendo-ui/framework/datasource/overview">Docs</a></li>
+									<li><strong>Kendo UI Templates</strong> - <a href="http://docs.telerik.com/kendo-ui/framework/templates/overview">What is it?</a> | <a href="http://demos.telerik.com/kendo-ui/templates/index">Learn it</a> | <a href="http://docs.telerik.com/kendo-ui/framework/templates/overview">Docs</a></li>
+									<li><strong>Command-line/Terminal</strong> - <a href="http://en.wikipedia.org/wiki/Command-line_interface">What is it?</a> | <a href="http://www.pluralsight.com/courses/meet-command-line">Learn it</a></li>
+									<li><strong>NodeJS</strong> - <a href="http://nodejs.org/">What is it?</a> | <a href="https://www.codeschool.com/courses/real-time-web-with-node-js">Learn it</a> | <a href="http://nodejs.org/documentation/">Docs</a><ul>
+											<li><strong>NPM</strong> - <a href="https://www.npmjs.org/">What is it?</a> | <a href="http://tech.pro/tutorial/1190/package-managers-an-introductory-guide-for-the-uninitiated-front-end-developer">Learn it</a> | <a href="https://www.npmjs.org/doc/">Docs</a></li>
+											<li><strong>Bower</strong> - <a href="http://bower.io/">What is it?</a></strong> | <a href="http://tech.pro/tutorial/1190/package-managers-an-introductory-guide-for-the-uninitiated-front-end-developer">Learn it</a> | <a href="http://bower.io/#getting-started">Docs</a></li>
+											<li><strong>gulp.js</strong> - <a href="http://gulpjs.com/">What is it?</a> | <a href="https://www.youtube.com/watch?v=dwSLFai8ovQ">Learn it</a> | <a href="https://github.com/gulpjs/gulp/blob/master/docs/README.md">Docs</a></li>
+										</ul>
+									</li>
+									<!--<li><strong><a href="http://www.telerik.com/platform#overview">AppBuilder</a></strong> - Sign up for a free account. A free account provides 30 days unlimited (i.e. enterprise edition) use and after 30 days it has limited use (i.e. can create a project and run/build it, but can't distribute it to a store)</li>
+									<li><strong><a href="http://cordova.apache.org/">Cordova</a></strong> - Apache Cordova is a set of device APIs that allow a mobile app developer to access native device function such as the camera or accelerometer from JavaScript.</li>-->
+								</ul>
+
+								<p>If you are unfamiliar with any of the above items, I suggest you stop reading this guide and spend sometime educating yourself about the concepts you are least knowledged about.</p>
+
+								<p>Another possible resource to consume and examine before reading this guide, and after grokking the above prerequisites, is the <a href="https://github.com/telerik/kendo-mobile-sushi">"Kendo Mobile Sushi Demo" on Github.</a> This mobile app demo provides three different patterns (<a href="https://github.com/telerik/kendo-mobile-sushi/blob/master/Sushi-MVVM.html">declarative instantiation only</a>, <a href="https://github.com/telerik/kendo-mobile-sushi/blob/master/Sushi-MVVM.html">declaritive+MVVM</a>, and <a href="https://github.com/telerik/kendo-mobile-sushi/blob/master/sushi-angular.html">angularJS</a>) for coding a Kendo UI Mobile application. By studying this application and the different patterns for creating a mobile app using Kendo UI, you will be well equipped to make sense of this guide.</p>
+							</div>
+
+							<div id="toc4" class="toc">
+								<h2>Whats-Er-Name Example Application</h2>
+
+								<p>This guide will express development opinions in the context of an application called, "whats-er-name". The whats-er-name app captures head-shots and names for the purpose of memorizing a group of peoples' names. I conjured up this application to help me memorize the names of each child on my son's football team. The application's functionality provides a UI to create a group, and to then enter a name and head shot (taken with the camera or pulled in from a photo already taken) for each person in the group. The point of the application is to create a <a href="http://demos.telerik.com/kendo-ui/scrollview/index">slideshow</a> of named photos for memorizing faces and names. Below I show the wireframe I drafted when spec'ing out the application. </p>
+
+								<img src="images/wireframe.png" />
+
+								<p>The source code can be found on <a href="https://github.com/telerik/whatsername">GitHub</a>. You should familiarize yourself with the code (i.e. download, build it, use the app) before reading this guide. Keep in mind that the code is more or less pseudo code, written for the purpose of crafting this document (i.e. storing image data URIs in <code>localStorage</code> is not an ideal solution). In other words, pay attention to the rationale/architecture around the total formation of application rather than to a specific individual part of the application.</p>
+
+								<p>Below is a small video walk-thru of the whats-er-name functionality in action.</p>
+
+								<div class="videoContainer">
+									<iframe src="//www.youtube.com/embed/3BJ_wyUeGCw?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+								</div>
+							</div>
+
+							<div id="toc5" class="toc">
+								<h2>Kendo UI Mobile Code</h2>
+
+								<p>Kendo UI Mobile widgets and application tools are free and open source for anyone to use for anything. The code is part of the open sourced<a href="http://www.telerik.com/kendo-ui/open-source-core"> Kendo UI Core</a> which is the foundation for Telerik's paid product, <a href="http://www.telerik.com/kendo-ui/comparison">Kendo UI Professional</a>.</p>
+
+								 <p>You can get Kendo UI Core from:</p>
+									<ul>
+								  <li><a href="https://github.com/telerik/kendo-ui-core#using-kendo-ui-core-via-the-kendo-static-cdn">the official CDN</a></li>
+								  <li><a href="http://bower.io/search/?q=kendo-ui">Bower</a></li>
+								  <li><a href="https://github.com/telerik/kendo-ui-core">GitHub</a></li>
+								  <li><a href="http://www.telerik.com/download/kendo-ui-core">By signing up for a 30-day trial of Kendo UI Professional</a> (which contains Kendo UI Core)</li>
+								  <li><a href="http://www.telerik.com/purchase/kendo-ui">By purchasing</a> a Kendo UI Professional license (which contains Kendo UI Core)</li>
+								  </ul>
+
+								<p>The whats-er-name application uses <a href="http://bower.io/">Bower</a> to install Kendo UI core. However, in this section of the guide, I will briefly detail all of the ways mentioned above that one can obtain the Kendo UI mobile source code.</p>
+
+								<h3>Getting Kendo UI Core From the CDN</h3>
+								<p>
+								<pre class="brush: html">
+									&lt;!DOCTYPE html&gt;
+									&lt;html&gt;
+									&lt;head&gt;
+										&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot; /&gt;
+										&lt;link href=&quot;http://cdn.kendostatic.com/2014.2.1008/styles/kendo.mobile.all.min.css&quot; rel=&quot;stylesheet&quot; /&gt;
+									&lt;/head&gt;
+									&lt;body&gt;
+
+										&lt;script src=&quot;https://code.jquery.com/jquery-2.1.1.min.js&quot;&gt;&lt;/script&gt;
+										&lt;script src=&quot;http://cdn.kendostatic.com/2014.2.1008/js/kendo.ui.core.min.js&quot;&gt;&lt;/script&gt;
+									&lt;/body&gt;
+									&lt;/html&gt;
+								</pre>
+								</p>
+
+								<div class="note">
+									<div class="notes-title">Notes</div>
+									<div class="notes">
+										<ul>
+											<li>The Kendo UI CDN is hosted on Amazon CloudFront.</li>
+											<li>In order to use HTTPS, you need to directly access the CloudFront CDN, or use your own domain and SSL certificate.</li>
+											<li>In production you should provide a <a href="http://docs.telerik.com/kendo-ui/install/cdn#cdn-fallback-and-troubleshooting">fallback to CDN code.</a></li>
+											<li>Minified files are not always ideal for development. And, only the <code>kendo.ui.code.min.js</code> file is available on the CDN. To get the non-minified files, use <code>bower install</code> or pull the source from GitHub.</li>
+										</ul>
+									</div>
+								</div>
+
+								<h3>Getting Kendo UI Core From Bower</h3>
+
+								<p>Open a terminal/command line and run <code>$ bower install kendo-ui</code> to get the Kendo UI Core package downloaded using <a href="http://bower.io/">Bower</a> into the current directory.</p>
+
+								<h3>Getting Kendo UI Core From GitHub</h3>
+
+								<p>Open a terminal/command line and run <code>$ git clone https://github.com/telerik/kendo-ui-core.git</code> to clone the Git repository into the current directory or <a href="https://github.com/telerik/kendo-ui-core/archive/master.zip">download the zip archive from GitHub.</a></p>
+
+								<h3>Sign Up For a Kendo UI Professional Trial </h3>
+
+								<p>Get a <a href="http://www.telerik.com/download/kendo-ui">30-day fully-functional trial of Kendo UI Professional</a> (requires signing up a Telerik account). The trial will contain Kendo UI core and the mobile code.</p>
+
+								<h3>Buy a Kendo UI Professional License</h3>
+
+								<p><a href="http://www.telerik.com/purchase/kendo-ui">Purchase a Kendo UI professional license</a> and you will have access to the complete source code for all of Kendo UI (requires signing up a Telerik account). Obviously, this will including Kendo UI core and the mobile code.</p> 
+
+							</div>
+
+							<!--_____________-->
+							<!--  chapter 1  -->
+							<!--_____________-->
+							<div id="chapter1" class="chapter">
+
+								<img src="images/Ninja-2.png" class="ninja noBorder" />
+
+								<h2><strong>1.</strong> Kendo UI Mobile Do's</h2>
+
+								<h3><strong>1.1</strong> Identify and Use Newer Web Technologies When Available</h3>
+
+								<p>A Kendo UI mobile app, even if it's running in a webview, is more than likley being rendered by a modern browser engine (i.e. a webview is like a browser window tab). Newer browser engines support things like <a href="http://kangax.github.io/compat-table/es5/">ES5</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Flexible_boxes">Flexbox</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS">CORS</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas">Canvas</a>, and <a href="https://developer.mozilla.org/en-US/docs/WebSockets">Web Sockets</a>.</p>
+
+								<p>Make sure you are aware of everything you have at your disposal for development and use it.</p>
+
+								<div class="note">
+									<div class="notes-title">Notes</div>
+									<div class="notes">
+										<ul>
+											<li>Kendo UI Mobile is <a href="http://docs.telerik.com/kendo-ui/browsers-support">supported</a> on Android 2.3+, iOS 6+, Windows Phone 8+, and Chrome for Android. Kendo UI Mobile widgets, used standalone and without the <a href="http://docs.telerik.com/kendo-ui/mobile/application">mobile application logic</a> will run on OS X 10.5+ (IE10+, Chrome Recent, Opera 15+, Safari 5+) and Windows XP+ / Server 2003+ (IE10+, Chrome Recent, Opera 15+)</li>
+										</ul>
+									</div>
+								</div>
+
+								<h3><strong>1.2</strong> Use jQuery 2.x</h3>
+
+								<p>By simply using jQuery 2.X your mobile app will benefit in the following ways:</p>
+
+								<ul>
+								<li>Performance improvements (up to 5%, depending on the app).</li>
+								<li>Faster load times, because jQuery 2.X is smaller in size</li>
+								<li>Future-proofing yourself for the inevitable end of the 1.x branch.</li>
+								</ul>
+
+								<p>Additionally, Kendo UI Mobile <a href="http://docs.telerik.com/kendo-ui/install/prerequisites">is only supported</a> in IE10+. Using jQuery 1.x, which contains a great deal of old code for IE 6, 7, 8 and 9 and is an unnecessary performance expense.</p>
+
+								<h3><strong>1.3</strong> Build Common Sense Code</h3>
+
+								<p>The following are common rules, laws, and practices among seasoned application developers for building long-lasting applications through consistency:</p>
+
+								<ol>
+									<li>Your entire codebase should follow the same <a href="https://github.com/rwaldron/idiomatic.js/">style</a> of coding as if a single developer (i.e. mind) crafted the code. This should be validated automatically at code time (i.e. in code editor on key stroke), build time, and commit time (e.g. GIT Hooks).</li>
+									<li>When writing code be verbose, prioritize readability (i.e. code is read much more often than it is written), comment everything, and dispense with DRY principles if it obscures developer clarity.</li>
+									<li>The DNA of an application is small miniature applications/components, properly decoupled into single responsibility modules.</li>
+									<li>Modules are separated by nature (i.e. behavior/controller, model/data, style, template/html, test etc..) but organized together (i.e. application structure) by UI feature.</li>
+									<li>Avoid complexity that does not clearly and rationally pay for itself.</li>
+									<li>Don't optimize development code, optimize production code (i.e. don't pre-optimize)</li>
+									<li>Document everything!</li>
+									<li>Automate what you can using a task runner to build code. Don't rely on manual tasks entrusted to humans.</li>
+									<li>Establish at least one layer (unit, integration, functional) of automated testing that runs during build or before accepting code commits (i.e. Use a githook to run tests, reject if tests fail).</li>
+									<li>Automate the logging and notification of runtime errors for production code.</li>
+									<li>Fear monolithic abstractions in the form of closed frameworks which promote one stop developer solutions.</li>
+									<li>Plan for change. It's the only constant! This means that you had better not build a large complex system or build on top of one you adopt. Build a very small set of simple modules that work together in a decoupled way.</li>
+								</ol>
+
+								<p>You need keep these practices in mind when creating a Kendo UI mobile application.</p>
+
+								<h3><strong>1.4</strong> Develop Using Real Devices</h3>
+
+								<p><a href="http://developer.telerik.com/featured/looking-glass-adventures-mobile-app-simulation-emulation-device-testing/">Simulators</a> and browsers running on a desktop or laptop provide a quick and easy way to run Kendo UI Mobile applications. However, this should not be how you test your code alone. It's critical that during development, development code is tested on the devices it's intended to run on. You need real phones. I recommend at the very least testing on the following device types:</p>
+
+								<ul>
+									<li>Windows Phone / Windows Mobile 8.0+</li>
+									<li>Android / Android 4.0+</li>
+									<li>iPhone / iOS 6.0+</li>
+								</ul>
+
+								<h3><strong>1.5</strong> Make Use of Remote Debugging Tools</h3>
+
+								<p>By plugging an Android (4.2+) or iOS (iOS6) device into you computer/laptop, you can use the developer tools found in Safari or Chrome locally to debug a Kendo UI Mobile application running on the phone in a browser. This is an invaluable tool when using real devices to test code.</p>
+
+								<ul>
+									<li>Android mobile debugging: <a href="https://developer.chrome.com/devtools/docs/remote-debugging">Docs</a> | <a href="http://www.smashingmagazine.com/2014/09/03/testing-mobile-emulators-simulators-remote-debugging/2/">Learn</a> | <a href="https://www.youtube.com/watch?v=yjxrr8CrUq0">Watch</a></li>
+									<li>iOS mobile debugging: <a href="https://developer.apple.com/library/safari/documentation/AppleApplications/Conceptual/Safari_Developer_Guide/GettingStarted/GettingStarted.html#//apple_ref/doc/uid/TP40007874-CH2-SW8">Docs</a> | <a href="http://www.smashingmagazine.com/2014/09/03/testing-mobile-emulators-simulators-remote-debugging/2/">Learn</a> | <a href="https://www.youtube.com/watch?v=E_eMhH1M37I">Watch</a></li>
+								</ul>
+
+								<div class="note">
+									<div class="notes-title">Notes</div>
+									<div class="notes">
+										<ul>
+											<li>The browser on a phone/tablet is representative of the engine (i.e. same engine) used in a <a href="https://developer.chrome.com/multidevice/webview/gettingstarted">webview</a> and can be preemptively used to test <a href="http://blogs.telerik.com/appbuilder/posts/12-06-14/what-is-a-hybrid-mobile-app-">hybrid applications</a>. It's even possible to <a href="http://developer.telerik.com/featured/a-concise-guide-to-remote-debugging-on-ios-android-and-windows-phone/">use browser debugging tools (from a desktop/lap) on webviews</a> running in hybrid native applications</li>
+										</ul>
+									</div>
+								</div>
+
+								<h3><strong>1.6</strong> Favor the Flat Theme</h3>
+
+								<p>By default, Kendo UI Mobile will use a unique platform specific theme to style the UI. This is considered platform [adaptive CSS rendering](http://docs.telerik.com/kendo-ui/mobile/introduction) because the UI will attempt to mimic the native UI of the devices OS. The first three devices (iOS, Android, Windows) in the image below demonstrate this feature in action.<p>
+
+								<img src="images/flatskinTheme.png" />
+
+								<p>However, it's better to force Kendo UI Mobile to use the <a href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.mobile.flat.min.css">kendo.mobile.flat.min.css</a> styles for all platforms (e.g. the far right device in the above image).</p>
+
+								<p>The reason to favor the flat theme is as follows:</p>
+
+								<ol>
+
+								<li>Mimicking the look and feel of a specific platform turns out to be a complicated <a href="http://ionicframework.com/blog/rise-above-the-platform/">proposition</a>, resulting in a UI that will likely fall short of native look and feel, function, and performance in most cases. It's better to have a custom UI than to have a UI that is always in second place to the real thing.
+								</li>
+
+								<li>Using the platform neutral theme results in a fast user experience because the CSS used to create the neutral theme is void of the complex CSS (i.e. Gradients etc...) required by the platform themes to replicate native UIs.</li>
+
+								<li>Overwriting and evolving one theme (i.e. the flat theme) is simpler than overwriting and evolving several platform specific themes. This is exactly what is done at <a href="http://kendoflatthemes.com/">http://kendoflatthemes.com/</a> </li>
+
+								</ol>
+
+								<p>To override Kendo UI Mobile's default nature of detecting the platform and forcing a platform-specific CSS theme simply set the <code>skin</code> <a href="http://docs.telerik.com/kendo-ui/api/javascript/mobile/application#configuration-skin">option</a> to <code>flat</code> in the <code>Application()</code> method when initializing the mobile application. </p>
+
+								<pre class="brush: js">
+									var app = new kendo.mobile.Application($(document.body), { skin: 'flat' });
+								</pre>
+
+
+								<h3><strong>1.7</strong> Tweak the Flat Theme</h3>
+
+								<p>Telerik offers a <a href="http://demos.telerik.com/kendo-ui/mobilethemebuilder">mobile theme builder tool</a> that can be used to generate CSS code that overrides the CSS found in the default Kendo UI Mobile themes. Below I show a video of this being done for the flat theme.</p>
+
+								<div class="videoContainer">
+									<iframe src="//www.youtube.com/embed/jGCdXNMu0No?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+								</div>
+
+								<p>However, using the theme builder tool might be overkill. If all you want to do is replace the default turquoise color in the flat theme, you can use the CSS below to do so. Simply change the color values in the CSS and make sure that the CSS is included in an HTML document after the flat theme CSS.</p>
+
+								<pre class="brush: css">
+									.km-flat .km-switch-handle,
+									.km-flat .k-slider-selection,
+									.km-flat .km-switch-background {
+									  color: #444;
+									}
+									.km-flat .km-rowinsert,
+									.km-flat .km-state-active,
+									.km-flat .km-scroller-pull,
+									.km-flat .km-loader:before,
+									.km-flat .k-slider-selection,
+									.km-flat .km-touch-scrollbar,
+									.km-flat .km-pages .km-current-page,
+									.km-flat .k-slider .k-draghandle,
+									.km-flat .k-slider .k-draghandle:hover,
+									.km-flat .km-tabstrip .km-state-active,
+									.km-flat .km-scroller-refresh.km-load-more,
+									.km-flat .km-popup .k-state-hover,
+									.km-flat .km-popup .k-state-focused,
+									.km-flat .km-popup .k-state-selected,
+									.km-flat .km-actionsheet > li > a:active,
+									.km-flat .km-actionsheet > li > a:hover,
+									.km-flat .km-actionsheet > li > .km-state-active,
+									.km-flat li.km-state-active .km-listview-link,
+									.km-flat li.km-state-active .km-listview-label,
+									.km-flat .km-listview-label input[type=radio]:checked,
+									.km-flat .km-listview-label input[type=checkbox]:checked {
+									  background: #444;
+									}
+									.km-flat .km-filter-wrap > input:focus {
+									  border-color: #444;
+									}
+								</pre>
+
+								<p>Before customizing the flat theme, either by hand or by using the theme builder tool, you should be aware of the flat theme customization found at <a href="http://kendoflatthemes.com/">http://kendoflatthemes.com/</a>. These themes extend the flat theme and can be used as is or as a starting point for further customization.</p>
+
+								<h3><strong>1.8</strong> Use the Additional Icons Kendo UI Mobile Provides</h3>
+
+								<p>Kendo UI Mobile includes 38 integrated font icons that can be used in HTML by specifying a <code>data-icon</code> attribute with one of the following icon names:</p>
+
+								<iframe width="100%" height="500" src="http://jsfiddle.net/codylindley/m0nwLezd/embedded/result,js,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+								<p>Below I show of one of these icons defined in HTML:</p>
+
+								<pre class="brush: html">
+									&lt;li&gt;&lt;span data-role=&quot;button&quot; data-icon=&quot;about&quot;&gt;&lt;/span&gt;about&lt;/li&gt;
+								</pre>
+
+								<p>Don't limit yourself to this short list of icons. There are hundreds of additional icons shipped for use but are simply not set up in CSS to be used. This is presumably done so the CSS does not become bloated with unused CSS declarations. Be aware of what is available and make use of what you need.<p>
+
+								<p>To use these additional icons you need to create CSS that references the additional icons. For example, the code below defines a right arrow icon by explicitly referencing the correct unicode/icon in the CSS declaration:</p>
+
+								<pre class="brush: css">
+									.km-arrow-e:after,
+									.km-arrow-e:before
+									{
+										content: "\e000";
+									}
+								</pre>
+
+								<p>With the above code in place, you can use the newly defined icon in your application like so:</p>
+
+								<pre class="brush: html">
+									&lt;a href=&quot;/&quot; data-icon=&quot;arrow-e&quot;&gt;Home&lt;/a&gt;
+								</pre>
+
+								<p>All Unicodes with associated icons are shown below:</p>
+
+								<iframe width="100%" height="1750" src="http://jsfiddle.net/codylindley/u5rg799g/embedded/result,js,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+								<h3><strong>1.9</strong> You'll Need a Mobile-First CSS Framework</h3>
+
+								<p>Kendo UI Mobile does not lock you into or prohibit the use of mobile-first CSS framework to aid with UI development. I've found that even the simplest of custom interfaces (i.e. anything you want to do that is not a widget alone) can benefit from the solutions found in a mobile CSS framework (mobile first grids, form styles, form layouts etc...).</p>
+
+								<p>Some battle-tested mobile-first CSS frameworks are:</p>
+
+								<ul>
+								<li><a href="http://getbootstrap.com/">Bootstrap</a></li>
+								<li><a href="http://getskeleton.com/">Skeleton</a></li>
+								<li><a href="http://purecss.io/">Pure.css</a></li>
+								<li><a href="http://cardinalcss.com/"><a href="http://cardinalcss.com/">Cardinal</a></li>
+								<li><a href="http://cferdinandi.github.io/kraken/index.html">Kraken</a></li>
+								</ul>
+								
+								<p>If introducing another third-party dependency into the code is not something you prefer doing, then just realize you will probably have to create a miniature custom CSS framework for aiding the development of custom interfaces. In other words, anything that is not a widget will have to be built using custom HTML &amp; CSS. This can come as a rather big surprise if you are expecting something similar to <a href="http://ionicframework.com/docs/components/">Ionic CSS components</a>.</p>
+
+								<div class="note">
+									<div class="notes-title">Notes</div>
+									<div class="notes">
+										<ul>
+											<li>I'm using Bootstrap in the whats-er-name. If you use Bootstrap, don't use the optional Kendo UI Mobile Bootstrap theme. It contains some CSS that might cause performance issues. </li>
+											<li>You might consider using the icons provided by third-party CSS frameworks. For example, if you use Bootstrap you could sidestep the Kendo UI Mobile icons and use <a href="http://glyphicons.com/">glyphicons.com</a></li>
+										</ul>
+									</div>
+								</div>
+
+								<h3><strong>1.10</strong> Only Use Kendo UI Patterns to Register Events</h3>
+
+								<p>This might be the single most important opinion found in this guide. If you add events in any other manner except the ones described below, you'll have to write your own custom logic to deal with event <a href="http://blogs.telerik.com/appbuilder/posts/13-11-21/what-exactly-is.....-the-300ms-click-delay">delays</a> and missed touches. 
+
+								<p>All touch related events should be declared in a mobile view using data attributes which refer to a view-model. Below, I show the 3 possible ways this can be coded:</p>
+
+								<pre class="brush: html">
+									data-click="viewModelFunction"
+								</pre>
+
+								<p>or</p>
+								
+								<pre class="brush: html">
+									data-bind="click:viewModelFunction"
+								</pre>
+
+								<p>or</p>
+
+								<pre class="brush: html">
+									data-bind="events{click:viewModelFunction,click:viewModelFunction}"
+								</pre>
+								
+								<p>Additionally, specific touch events that are not MVVM or widget specific (i.e. <a href="http://docs.telerik.com/kendo-ui/framework/mvvm/bindings/click">click</a>) can be setup generically using the <a href="http://docs.telerik.com/kendo-ui/mobile/touch">Touch</a> widget.</p>
+
+								<pre class="brush: html">
+								   &lt;div data-role=&quot;view&quot;&gt;
+										&lt;div data-role=&quot;touch&quot; data-tap=&quot;onTap&quot;&gt;
+											Tap me
+										&lt;/div&gt;
+									&lt;/div&gt;
+
+									&lt;script&gt;
+										function onTap(e) {
+											console.log(e.touch.target + &quot; was tapped&quot;);
+										}
+									&lt;/script&gt;
+								</pre>
+
+								<h3><strong>1.11</strong> Improving Tap Predictability</h3>
+
+								<p>Touch events can be unpredictable on mobile devices and mobile browser. This is an issue which plagues not just Kendo UI Mobile, but all HTML5/JavaScript solutions for mobile devices. To <a href="http://www.telerik.com/forums/click-event-does-not-fire-reliably#a7ATIQr3uUyK68TXtkglpQ">fix this today you can add the following code to your project to improve iOS and Windows touch reliability</a>:</p>
+
+								<pre class="brush: javascript">
+									var app = new kendo.mobile.Application(document.body, {
+										init: function() {
+											//don't do this for android, causes issues with scrollView and swiping
+										   kendo.UserEvents.defaultThreshold(kendo.support.mobileOS.device === 'android' ? 0:20);
+										}
+									});
+								</pre>
+
+								<h3><strong>1.12</strong> Favor Kendo UI Mobile Widgets</h3>
+
+								<p>Although you can use third-party UI widgets with Kendo UI Mobile, it is best to stick with the Kendo UI Mobile widgets when they are available. Kendo UI Mobile widgets automatically adhere to the page's theme, use a <a href="http://docs.telerik.com/kendo-ui/api/javascript/ui/widget">consistent API</a>, and are tested on each of <a href="http://docs.telerik.com/kendo-ui/browsers-support">Kendo UI Mobile's supported browsers</a>.</p>
+
+								<p>The whats-er-name application uses the <a href="http://demos.telerik.com/kendo-ui/mobile-button/index">Button</a>, <a href="http://demos.telerik.com/kendo-ui/drawer/index">Drawer</a>, <a href="http://demos.telerik.com/kendo-ui/mobile-layout/index">Layout(s)</a>, <a href="http://demos.telerik.com/kendo-ui/navbar/index">NavBar(s)</a>, and <a href="http://demos.telerik.com/kendo-ui/scrollview/index">ScrollView</a> widgets. You can view a full list of Kendo UI Mobile widgets at <a href="http://demos.telerik.com/kendo-ui/">http://demos.telerik.com/kendo-ui/</a> (see the “Mobile” heading), or you can scan the QR code below to run the demos on a mobile device (note: QR links you to all the Kendo demos not just mobile demos).</p>
+
+								<svg style="width: 100%; height: 100%; overflow: hidden; left: -0.5px; top: -0.5625px;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><defs></defs><g><path d="M0.5 0.5 L 109.5 0.5 109.5 109.5 0.5 109.5Z" stroke="#666666" stroke-width="1" fill="#fff"></path><path d="M12 12 L 12 15 33 15 33 12Z M36 12 L 36 15 39 15 39 12Z M45 12 L 45 15 51 15 51 12Z M54 12 L 54 15 63 15 63 12Z M66 12 L 66 15 69 15 69 12Z M78 12 L 78 15 99 15 99 12Z M12 15 L 12 18 15 18 15 15Z M30 15 L 30 18 33 18 33 15Z M36 15 L 36 18 45 18 45 15Z M48 15 L 48 18 57 18 57 15Z M63 15 L 63 18 69 18 69 15Z M72 15 L 72 18 75 18 75 15Z M78 15 L 78 18 81 18 81 15Z M96 15 L 96 18 99 18 99 15Z M12 18 L 12 21 15 21 15 18Z M18 18 L 18 21 27 21 27 18Z M30 18 L 30 21 33 21 33 18Z M42 18 L 42 21 51 21 51 18Z M54 18 L 54 21 66 21 66 18Z M72 18 L 72 21 75 21 75 18Z M78 18 L 78 21 81 21 81 18Z M84 18 L 84 21 93 21 93 18Z M96 18 L 96 21 99 21 99 18Z M12 21 L 12 24 15 24 15 21Z M18 21 L 18 24 27 24 27 21Z M30 21 L 30 24 33 24 33 21Z M42 21 L 42 24 45 24 45 21Z M54 21 L 54 24 57 24 57 21Z M63 21 L 63 24 69 24 69 21Z M78 21 L 78 24 81 24 81 21Z M84 21 L 84 24 93 24 93 21Z M96 21 L 96 24 99 24 99 21Z M12 24 L 12 27 15 27 15 24Z M18 24 L 18 27 27 27 27 24Z M30 24 L 30 27 33 27 33 24Z M36 24 L 36 27 48 27 48 24Z M51 24 L 51 27 57 27 57 24Z M66 24 L 66 27 69 27 69 24Z M78 24 L 78 27 81 27 81 24Z M84 24 L 84 27 93 27 93 24Z M96 24 L 96 27 99 27 99 24Z M12 27 L 12 30 15 30 15 27Z M30 27 L 30 30 33 30 33 27Z M36 27 L 36 30 39 30 39 27Z M45 27 L 45 30 48 30 48 27Z M60 27 L 60 30 63 30 63 27Z M66 27 L 66 30 69 30 69 27Z M78 27 L 78 30 81 30 81 27Z M96 27 L 96 30 99 30 99 27Z M12 30 L 12 33 33 33 33 30Z M36 30 L 36 33 39 33 39 30Z M42 30 L 42 33 45 33 45 30Z M48 30 L 48 33 51 33 51 30Z M54 30 L 54 33 57 33 57 30Z M60 30 L 60 33 63 33 63 30Z M66 30 L 66 33 69 33 69 30Z M72 30 L 72 33 75 33 75 30Z M78 30 L 78 33 99 33 99 30Z M36 33 L 36 36 39 36 39 33Z M42 33 L 42 36 51 36 51 33Z M54 33 L 54 36 57 36 57 33Z M60 33 L 60 36 63 36 63 33Z M66 33 L 66 36 75 36 75 33Z M12 36 L 12 39 21 39 21 36Z M27 36 L 27 39 33 39 33 36Z M36 36 L 36 39 45 39 45 36Z M51 36 L 51 39 57 39 57 36Z M60 36 L 60 39 63 39 63 36Z M66 36 L 66 39 69 39 69 36Z M72 36 L 72 39 87 39 87 36Z M93 36 L 93 39 99 39 99 36Z M12 39 L 12 42 15 42 15 39Z M18 39 L 18 42 21 42 21 39Z M36 39 L 36 42 45 42 45 39Z M51 39 L 51 42 57 42 57 39Z M63 39 L 63 42 66 42 66 39Z M69 39 L 69 42 72 42 72 39Z M78 39 L 78 42 81 42 81 39Z M93 39 L 93 42 99 42 99 39Z M12 42 L 12 45 18 45 18 42Z M24 42 L 24 45 33 45 33 42Z M45 42 L 45 45 48 45 48 42Z M57 42 L 57 45 63 45 63 42Z M69 42 L 69 45 72 45 72 42Z M87 42 L 87 45 93 45 93 42Z M96 42 L 96 45 99 45 99 42Z M15 45 L 15 48 18 48 18 45Z M21 45 L 21 48 27 48 27 45Z M39 45 L 39 48 42 48 42 45Z M51 45 L 51 48 54 48 54 45Z M66 45 L 66 48 72 48 72 45Z M78 45 L 78 48 81 48 81 45Z M12 48 L 12 51 15 51 15 48Z M18 48 L 18 51 21 51 21 48Z M24 48 L 24 51 27 51 27 48Z M30 48 L 30 51 36 51 36 48Z M39 48 L 39 51 42 51 42 48Z M45 48 L 45 51 54 51 54 48Z M57 48 L 57 51 63 51 63 48Z M72 48 L 72 51 75 51 75 48Z M78 48 L 78 51 81 51 81 48Z M96 48 L 96 51 99 51 99 48Z M15 51 L 15 54 24 54 24 51Z M27 51 L 27 54 30 54 30 51Z M36 51 L 36 54 42 54 42 51Z M48 51 L 48 54 51 54 51 51Z M57 51 L 57 54 60 54 60 51Z M63 51 L 63 54 66 54 66 51Z M69 51 L 69 54 84 54 84 51Z M90 51 L 90 54 99 54 99 51Z M21 54 L 21 57 27 57 27 54Z M30 54 L 30 57 45 57 45 54Z M48 54 L 48 57 60 57 60 54Z M66 54 L 66 57 72 57 72 54Z M78 54 L 78 57 81 57 81 54Z M87 54 L 87 57 90 57 90 54Z M96 54 L 96 57 99 57 99 54Z M12 57 L 12 60 15 60 15 57Z M18 57 L 18 60 30 60 30 57Z M36 57 L 36 60 39 60 39 57Z M42 57 L 42 60 51 60 51 57Z M54 57 L 54 60 57 60 57 57Z M66 57 L 66 60 69 60 69 57Z M81 57 L 81 60 87 60 87 57Z M12 60 L 12 63 15 63 15 60Z M21 60 L 21 63 33 63 33 60Z M36 60 L 36 63 39 63 39 60Z M51 60 L 51 63 57 63 57 60Z M60 60 L 60 63 63 63 63 60Z M72 60 L 72 63 75 63 75 60Z M78 60 L 78 63 84 63 84 60Z M87 60 L 87 63 90 63 90 60Z M96 60 L 96 63 99 63 99 60Z M18 63 L 18 66 27 66 27 63Z M33 63 L 33 66 36 66 36 63Z M39 63 L 39 66 45 66 45 63Z M51 63 L 51 66 63 66 63 63Z M69 63 L 69 66 75 66 75 63Z M78 63 L 78 66 84 66 84 63Z M87 63 L 87 66 99 66 99 63Z M12 66 L 12 69 18 69 18 66Z M24 66 L 24 69 27 69 27 66Z M30 66 L 30 69 33 69 33 66Z M42 66 L 42 69 48 69 48 66Z M57 66 L 57 69 60 69 60 66Z M63 66 L 63 69 66 69 66 66Z M69 66 L 69 69 75 69 75 66Z M78 66 L 78 69 81 69 81 66Z M84 66 L 84 69 87 69 87 66Z M96 66 L 96 69 99 69 99 66Z M18 69 L 18 72 21 72 21 69Z M24 69 L 24 72 27 72 27 69Z M33 69 L 33 72 36 72 36 69Z M39 69 L 39 72 42 72 42 69Z M51 69 L 51 72 54 72 54 69Z M60 69 L 60 72 63 72 63 69Z M66 69 L 66 72 72 72 72 69Z M75 69 L 75 72 78 72 78 69Z M81 69 L 81 72 87 72 87 69Z M12 72 L 12 75 24 75 24 72Z M30 72 L 30 75 33 75 33 72Z M36 72 L 36 75 39 75 39 72Z M42 72 L 42 75 54 75 54 72Z M57 72 L 57 75 60 75 60 72Z M69 72 L 69 75 90 75 90 72Z M93 72 L 93 75 96 75 96 72Z M36 75 L 36 78 39 78 39 75Z M48 75 L 48 78 51 78 51 75Z M57 75 L 57 78 66 78 66 75Z M69 75 L 69 78 75 78 75 75Z M84 75 L 84 78 93 78 93 75Z M96 75 L 96 78 99 78 99 75Z M12 78 L 12 81 33 81 33 78Z M39 78 L 39 81 42 81 42 78Z M48 78 L 48 81 60 81 60 78Z M72 78 L 72 81 75 81 75 78Z M78 78 L 78 81 81 81 81 78Z M84 78 L 84 81 87 81 87 78Z M96 78 L 96 81 99 81 99 78Z M12 81 L 12 84 15 84 15 81Z M30 81 L 30 84 33 84 33 81Z M36 81 L 36 84 51 84 51 81Z M54 81 L 54 84 57 84 57 81Z M60 81 L 60 84 63 84 63 81Z M69 81 L 69 84 75 84 75 81Z M84 81 L 84 84 90 84 90 81Z M93 81 L 93 84 96 84 96 81Z M12 84 L 12 87 15 87 15 84Z M18 84 L 18 87 27 87 27 84Z M30 84 L 30 87 33 87 33 84Z M39 84 L 39 87 42 87 42 84Z M51 84 L 51 87 57 87 57 84Z M60 84 L 60 87 63 87 63 84Z M69 84 L 69 87 90 87 90 84Z M93 84 L 93 87 99 87 99 84Z M12 87 L 12 90 15 90 15 87Z M18 87 L 18 90 27 90 27 87Z M30 87 L 30 90 33 90 33 87Z M42 87 L 42 90 45 90 45 87Z M51 87 L 51 90 60 90 60 87Z M69 87 L 69 90 72 90 72 87Z M75 87 L 75 90 78 90 78 87Z M84 87 L 84 90 90 90 90 87Z M96 87 L 96 90 99 90 99 87Z M12 90 L 12 93 15 93 15 90Z M18 90 L 18 93 27 93 27 90Z M30 90 L 30 93 33 93 33 90Z M36 90 L 36 93 39 93 39 90Z M45 90 L 45 93 48 93 48 90Z M57 90 L 57 93 60 93 60 90Z M63 90 L 63 93 66 93 66 90Z M72 90 L 72 93 78 93 78 90Z M84 90 L 84 93 99 93 99 90Z M12 93 L 12 96 15 96 15 93Z M30 93 L 30 96 33 96 33 93Z M36 93 L 36 96 39 96 39 93Z M51 93 L 51 96 54 96 54 93Z M57 93 L 57 96 63 96 63 93Z M72 93 L 72 96 84 96 84 93Z M87 93 L 87 96 90 96 90 93Z M12 96 L 12 99 33 99 33 96Z M36 96 L 36 99 39 99 39 96Z M42 96 L 42 99 54 99 54 96Z M60 96 L 60 99 63 99 63 96Z M72 96 L 72 99 81 99 81 96Z M84 96 L 84 99 90 99 90 96Z M96 96 L 96 99 99 99 99 96Z" stroke="none" fill="#333333"></path></g></svg>
+
+								<h3><strong>1.13</strong> Favor HTML Form Elements Over Kendo UI Mobile Counterparts</h3>
+
+								<p>When building forms in mobile apps, you should use HTML5 form elements whenever possible (e.g. input types like email, date, numeric, select, etc) instead of using the more complex Kendo UI counterparts (e.g. NumericBoxTextBox, DropDownList, etc). There is, of course, nothing wrong with the Kendo UI widgets, but if you don't need any specific functionality from them, you might as well save the overhead.</p>
+
+							</div>
+
+<!-- The above section needs one sentence that explains what kendo.UserEvents.defaultThreshold actual does. That sentence could also appear as a comment in the code. -->
+
+							<!--_____________-->
+							<!--  chapter 2  -->
+							<!--_____________-->
+							<div id="chapter2" class="chapter">
+
+							<img src="images/Ninja-3.png" class="ninja noBorder" />
+
+							<h2><strong>2.</strong> Kendo UI Mobile Cautions &amp; Don'ts</h2>
+
+							<h3><strong>2.1</strong> Don't Add Mobile Rendering Meta Elements</h3>
+
+								<p>Kendo UI Mobile automatically adds the meta elements below when your application is instantiated:</p>
+								
+								<pre class="brush: html">
+								&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot;&gt;
+								&lt;meta name=&quot;apple-mobile-web-app-status-bar-style&quot; content=&quot;black&quot;&gt;
+								&lt;meta name=&quot;msapplication-tap-highlight&quot; content=&quot;no&quot;&gt;
+								&lt;meta content=&quot;initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; name=&quot;viewport&quot;&gt;
+								</pre>
+
+								<p>Rely on this fact and don't add your own. </p>
+
+
+							<h3><strong>2.4</strong> Don't Use IE Compatibility Modes</h3>
+
+							<p>Internet Explorer compatibility modes can exhibit different behavior and rendering bugs, compared to the browser versions they emulate. Don't use compatibility modes, just the Edge mode. Place the following meta tag on all .html pages to enable <a href="https://www.modern.ie/en-us/performance/how-to-use-x-ua-compatible">IE's Edge mode.</a>
+
+							<pre class="brush: html">
+								&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot; /&gt;
+							</pre>
+
+							<h3><strong>2.5</strong> Don't Use AJAX to Navigate to Views (i.e. Remote Views)</h3>
+
+							<p>Use a build step (like in the whats-er-name application) to get all the views in the application into a single <code>.html</code> page so that the application does not have to use AJAX to retrieve views when the application is running. View rendering is simplified when you take asynchronous view loading patterns out of the architecture.</p>
+
+							<h3><strong>2.6</strong> Don't Fight Against Declarative Widget Initialization or MVVM</h3>
+
+							<p>Kendo UI Mobile widgets and the <code>Application</code> instance are integrated with the <a href="http://docs.telerik.com/kendo-ui/basics/markup#kendo-ui-mobile-application-with-a-view-and-an-autocomplete-widget">declarative widget initialization (i.e. create widgets from markup)</a> and the <a href="http://docs.telerik.com/kendo-ui/mobile/mvvm">MVVM</a> pattern. Learn it, accept it, and don't fight it. Otherwise, you'd be better off not using the <code>kendo.mobile.Application()</code> and SPA logic found in the <code>Application</code> instance. You'd be better off either going all in on <a href="http://docs.telerik.com/kendo-ui/mobile/angular/angular">AngularJS</a> or using the <a href="http://docs.telerik.com/kendo-ui/mobile/regular-usage">mobile widgets in stand alone mode</a>.</p>
+
+							<h3><strong>2.7</strong> Don't Mix AngularJS With Kendo UI MVVM or Mobile SPA Logic </h3>
+
+							<p>If you are using AngularJS then you probably want to use Angular's own routing mechanism and data binding. In other words, don't mix SPA logic from Kendo UI Mobile with SPA logic from Angular. You won't be happy.</p>
+
+							<h3><strong>2.8</strong> Don't Use a Dependency Manager With Mobile Views</h3>
+
+							<p>Assuming, and I do in this guide, you are using the mobile application logic, don't attempt to load mobile views with a dependency manager. Doing so creates unnecessary complexity and overhead. Because of the way that the application logic works, all views have to be loaded and depended upon once (due to declarative instantiation) before the <code>Application</code> instance can be instantiated. This fact makes something like <a href="http://requirejs.org/">RequireJS</a> almost pointless due to the complexity it adds to an application. Using RequireJS just so you can have modules is not ideal considering simpler solutions are possible using a tasking tool (e.g. gulp, grunt etc...).</p>
+
+							<p>Favor a build strategy using a tasking tool that allows you to keep things in organized modules but pull everything into a single <code>.html</code> file during the build process. Doing this works with Kendo UI Mobile assumptions (i.e everything in a single .html file) not against them.</p>
+
+							</div>
+
+							<!--_____________-->
+							<!--  chapter 3  -->
+							<!--_____________-->
+							<div id="chapter3" class="chapter">
+
+							<img src="images/Ninja-4.png" class="ninja noBorder" />
+							
+							<h2><strong>3.</strong> whats-er-name Folder Structure</h2>
+
+							<h3><strong>3.1</strong> Application Structure Overview</h3>
+
+							<p>The directory structure belows details the folder structured used to create the whats-er-name application.</p>
+<pre>
+├── README.md
+├── bower.json
+├── gulpfile.js
+├── node_modules
+├── package.json
+├── src
+│   ├── index.html
+│   ├── shared
+│   │   ├── css
+│   │   ├── layouts
+│   │   ├── models
+│   │   └── utilities
+│   └── ui
+│       ├── appInfo
+│       ├── groups
+│       └── nameViewer
+├── wwwDev
+│   ├── bower_components
+│   │   ├── bootstrap
+│   │   ├── canvasResize
+│   │   ├── jquery
+│   │   ├── kendo-ui
+│   │   └── lodash
+│   ├── index.html
+│   ├── shared
+│   │   ├── css
+│   │   ├── layouts
+│   │   ├── models
+│   │   └── utilities
+│   └── ui
+│       ├── appInfo
+│       ├── groups
+│       └── nameViewer
+└── wwwProd
+	├── fonts
+	│   ├── glyphicons-halflings-regular.eot
+	│   ├── glyphicons-halflings-regular.svg
+	│   ├── glyphicons-halflings-regular.ttf
+	│   └── glyphicons-halflings-regular.woff
+	├── index.html
+	├── thirdparty
+	│   ├── Flat
+	│   ├── bootstrap.css.map
+	│   ├── images
+	│   ├── thirdparty-15c25db7.css
+	│   └── thirdparty-3f70b54f.js
+	├── whatsername-5bdcc67f.css
+	└── whatsername-8b890cb0.js
+</pre>
+
+							<p>I'm detailing the whats-er-name directory tree in this guide to server in order to prescriptive a structure, by example, that can be used for any Kendo UI mobile application. You can investigate and navigate this directory structure yourself by <a href="https://github.com/telerik/whatsername">getting the code from GitHub</a> and running a development build and production build using gulp. The remaining content in this chapter will discuss the directory structure in detail. Make sure you are referencing the above directory tree structure as you read.</p>
+
+							<h3><strong>3.2</strong> Bower &amp; NPM Directory Setup</h3>
+
+							<p>The Bower and NPM package managers are used to download third-party code (i.e. public packages). Below, I describe where these packages are being stored and how each manager is configured for the whats-er-name application.</p>
+
+							<p>Node packages (used by <a href="http://gulpjs.com/">Gulp</a>) are stored in a directory called <code>node_modules</code> at the root of directory containing the application. This is the default directory name and location, used by NPM, for storing node modules. The <code>package.json</code> file, which defines/configures which modules are need, can also be found at the root of the directory containing the application.</p>
+
+							<p>Bower, unlike npm, is not being used in the default manner. The <code>bower.json</code> file is in the root of the application directory, which is common, but I am using the <code>.bowerrc</code> file to configure bower to store packages in the <code>wwwDev</code> directory in a folder called <code>bower_components</code>. This might seem odd, until you become aware of the fact that what you actually see in the browser during development is being served from the <code>wwwDev</code> directory and not the <code>src</code> directory.</p>
+
+							<h3><strong>3.3</strong> Src, wwwDev, wwwProd Directories</h3>
+
+							<p>The whats-er-name application source code can be found in the <code>src</code> directory. This will be where you edit code during development. The <code>wwwDev</code> directory and the <code>wwwProd</code> directory will contain development and production versions of the code which get served to a web browser using <a href="https://github.com/schickling/gulp-webserver">gulp-webserver</a> (more on that in the build and task section).</p>
+
+							<div class="note">
+								<div class="notes-title">Notes</div>
+								<div class="notes">
+									<ul>
+										<li>If you are looking at the code in GitHub the <code>wwwDev</code> and <code>wwwProd</code> folders are missing. This is because they are created from running the dev and production build tasks.</li>
+									</ul>
+								</div>
+							</div>
+
+							<h3><strong>3.4</strong> Shared Directory</h3>
+
+							<p>The <code>src/shared</code> directory will contain logically named and grouped modules which are either used globally to run the application or are used by more than one view module. Common files to find in the shared directory are global CSS modules, layout modules, models, and utility modules. Modules placed in the <code>shared</code> directory help to keeping things DRY. If more than one module in the <code>ui</code> directory uses another module, it's likely a candidate for placement in the <code>shared</code> directory.</p>
+
+							<h3><strong>3.5</strong> <code>ui</code> Directory</h3>
+
+							<p>The <code>ui</code> directory contains logically grouped and named UI portions of the application. It's not a hard and fast rule, but think of the <code>ui</code> directory as the place you start dividing the application into a folder structure of features or logical sections of the application. Often the structure of this directory will mimic the architecture of the application from a navigation or tree map perspective. This can often be a source of great confusion for developers because the structure of the folders depends greatly upon what is being built.</p> 
+
+							<p>For a Kendo UI Mobile application it might be best to simply consider that each view has its own directory potentially containing one or more of the following modules:</p>
+
+							<ul>
+								<li>view-model JS file (aka a controller)</li>
+								<li>view HTML file</li>
+								<li>layout HTML file</li>
+								<li>view CSS file containing view-specific styles</li>
+								<li>model JS file</li>
+								<li>template HTML file containing a template used in the view by a widget</li>
+								<li>test JS test file (test file could be a unit test, testing view-model or functional test, testing the view)</li>
+							</ul>
+
+							 <p>These directories of views form a tree/hierarchical structure based on the logical break up of the application from the user's perspective (i.e user interface).</p> 
+
+							<p>How exactly the <code>ui</code> directory is organized is not an exact science. What's important is that the directory is human friendly, development friendly, and its architecture facilitates an application made up of small parts, grouped logically together, that have a clear separation of concerns (i.e. small modules). Every folder in the <code>ui</code> directory should represent a logical part (i.e. a region of logically relevant UI) of the application. Inside of the folder will be all of the source code for that part only (excluding parts found in the shared directory that are globally used by more than one view).</p>
+
+							<p>If this is difficult for you to envision, study the whats-er-name wireframe and the whats-er-name directory structure (specifically the <code>ui</code> directory) to get a feel for this style of organization.</p>
+
+							<h3><strong>3.6</strong> Git Ignoring Directories</h3>
+
+							<p>The <code>.gitignore</code> file (shown below) is used to keep the <code>node_modules</code>, <code>wwwProd</code>, and <code>wwwDev</code> out of Git source control.</p>
+
+							<pre class="brush: html">
+								.DS_Store
+								node_modules
+								wwwProd
+								wwwDev
+							</pre>
+
+							<p>If it's not obvious, this is done so that NPM and Bower packages are included in the repository and local development code (i.e. wwwProd and wwwDev) stays local.</p>
+
+							</div>
+
+							<!--_____________-->
+							<!--  chapter 4  -->
+							<!--_____________-->
+							<div id="chapter4" class="chapter">
+
+							<img src="images/Ninja-5.png" class="ninja noBorder" />
+							
+							<h2><strong>4.</strong> whats-er-name Gulp Builds</h2>
+
+							<h3><strong>4.1</strong> What Is Gulp Doing?</h3>
+
+							<p>The whats-er-name app uses <a href="http://gulpjs.com/">gulp</a> (a task runner) to create development and production builds that are opened in a browser and served from a local node server (e.g. localhost:3027). Basically, as you develop, a build is occurring (i.e. a bunch of tasks you don't want to run manually) every time you make a change to the source code. When a change is detected (i.e. files re-built) the browser tab serving the application is reloaded.</p>
+
+							<p>When you are done developing the application, a production build can be run (i.e. <code>$ gulp prod</code>) to convert your development code into production-ready code. Note that production code is served on a different server (localhost:3028) than development code and is not listening to changes from the development directory, therefore it will not reload the browser as you make changes.</p>
+
+							<p>Gulp tasks are configured in the <code><a href="https://github.com/telerik/whatsername/blob/master/gulpfile.js">gulpfile.js</a></code> file found in the root directory of the application. You'll find the file is broken up into wwwDev and wwwProd tasks.</p>
+
+							<h3><strong>4.1</strong> The wwwDev Build Process &amp; Server</h3>
+
+							<p>The wwwDev process are the gulp tasks, and reoccurring tasks, which get run during development.</p>
+
+							<p>The following list summarizes the development process and tasks:</p>
+
+							<ol>
+								<li>empties the <code>wwwDev</code> directory except for bower components</li>
+								<li>parses the <code>index.html</code> file in <code>src</code> directory doing file includes, and places all .html files (including the updated index.html) from the <code>src</code> into the <code>wwwDev</code> directory</li>
+								<li>starts a webserver at localhost:3027 that serves the <code>wwwDev</code> directory, and opens localhost:3027 in default browser on your machine</li>
+								<li>listens for any change in <code>src</code> directory. If a change occurs it runs step 2</li>
+							</ol>
+
+							<p>To start this process run <code>$ gulp dev</code>.</p>
+
+							<div class="note">
+								<div class="notes-title">Notes</div>
+								<div class="notes">
+									<ul>
+										<li>I'm not using any sort of <a href="https://www.npmjs.com/package/gulp-sass/">CSS</a> or <a href="https://www.npmjs.com/package/gulp-coffee/">JS</a> pre-processors. But if you wanted to, you could easily adjust the wwwDev process to add them.</li>
+									</ul>
+								</div>
+							</div>
+
+							<h3><strong>4.2</strong> The wwwProd Build Process &amp; Server</h3>
+
+							<p>The wwwDev process are the gulp tasks which get run after development is done. The process will create a production-ready set of files. For more details on the wwwProd process examine the <a href="https://github.com/telerik/whatsername/blob/master/gulpfile.js">gulp.js</a> file.</p>
+
+							<p>The following summarizes the production process and tasks:</p>
+
+							<ol>
+								<li>empty the <code>wwwProd</code> directory</li>
+								<li>take <code>wwwDev</code> code, concatenate css and js based on build comments in <code>index.html</code>, version each file (e.g. whatsername-8b890cb0.js), place new code in <code>wwwProd</code></li>
+								<li>move all the image and font assets in <code>wwwDev</code> required by CSS to correct location in <code>wwwProd</code></li>
+								<li>lint CSS</li>
+								<li>hint HTML</li>
+								<li>hint JavaScript</li>
+								<li>minify CSS, HTML, and JS</li>
+								<li>start a web server at localhost:3028 serving the <code>wwwProd</code> directory, open localhost:3028 in default browser on local machine</li>
+							</ol>
+
+							<p>To start the wwwProd process run <code>$ gulp prod</code>. For more details on the wwwProd process examine the <a href="https://github.com/telerik/whatsername/blob/master/gulpfile.js">gulp.js</a> file.</p>
+
+							</div>
+
+							<!--_____________-->
+							<!--  chapter 5  -->
+							<!--_____________-->
+							<div id="chapter5" class="chapter">
+
+							<img src="images/Ninja-6.png" class="ninja noBorder" />
+							
+							<h2><strong>5.</strong> whats-er-name Application Architecture</h2>
+
+							<h3><strong>5.1</strong> <code>index.html</code> Overview</h3>
+
+							<p>There will be only one valid HTML file (i.e. doctype, header, etc..) in the entire application. It will be called <code>index.html</code> and it will reside in the <code>src</code> folder. All other assets will be considered a module that is included via <code>index.html</code> using a <code>&lt;script&gt;</code> element, <code>&lt;link&gt;</code> element, or the build process (i.e. <a href="https://github.com/coderhaoxin/gulp-file-include">client-side includes</a>).</p>
+
+							<p>Consider <code>index.html</code> the master configuration file for including all the necessary modules (models, views, view-models, layouts, templates, CSS, JS etc..) to make the application run. If you open index.html and read the comments, it should be obvious that by running <code>index.html</code> in a browser it will load all modules and then instantiate the entire application.</p>
+
+							<p>Note that when the application is instantiated (i.e. <code>kendo.mobile.Application()</code> is invoked) the mobile application logic is instantiating everything (e.g. view, layouts, widgets etc..) that is defined using declarative markup. In other words, anything declaratively defined is instantiated when the application first boots up.</p>
+
+							<h3><strong>5.2</strong> Application Name Space</h3>
+
+							<p>The Kendo UI Mobile <a href="http://docs.telerik.com/kendo-ui/api/javascript/mobile/application">application</a> logic, by default, looks for supporting JavaScript in the global scope. This factor forces the use of a global name space instead of privately scoped modules with inject scopes. Thus the whats-er-name application uses a global name space to store JavaScript code relating to the application so that any module can gain a reference to another module's interface.</p>
+
+							<p>The name space <code>whatsername</code> and shortcut name space <code>wrn</code> are defined in the <code>index.html</code> file and shown below.</p>
+
+							<pre class="brush: html">
+								&lt;script&gt; 
+									this.whatsername = this.wrn = {}; //long and shortcut namespace
+								&lt;/script&gt;
+							</pre>
+							<p>JavaScript modules need to be properly placed inside of the name space in an organized fashion. Meaning, for each JavaScript file (e.g. utilities, models, view-models) we have to create, or add, a name space for the code to live within. More detail around defining a JavaScript module for models, view-models, and utility modules will be given in the appropriate section of this chapter.</p>
+
+							<div class="note">
+								<div class="notes-title">Notes</div>
+								<div class="notes">
+									<ul>
+										<li>The Kendo UI Mobile application (i.e. the construction done via declarative instantiation), assumes that all dependencies can be found in the global scope. This is pretty much the opposite of dependency management/injection, and it's why you'll see references to deeply nested objects in the source code. The modules are not injected into scope, they are referenced where they are attached to the name space and sub name spaces. Obviously, more sophisticated solutions for dealing with scope and modules (i.e. dependency management/injection) are available today but layering these abstractions over the top of the current application logic adds <a href="https://www.youtube.com/watch?v=hrAssE8meRo&feature=youtu.be&t=28m55s">unnecessary complexity</a>. Using nested objects and having to type out longer object references is recommended because it works with the default behavior of the <code>kendo.mobile.Application</code> logic, not against it. If you are using Angular, then you'd obviously be going down the Angular road (i.e. dependency injection) leaving behind all the Kendo mobile application logic.</li>
+									</ul>
+								</div>
+							</div>
+
+							<h3><strong>5.3</strong> Run/Instantiate Application</h3>
+
+							<p>As previously stated, the mobile application is instantiated by the last script parsed in the <code>index.html</code> file. This is where you would provide any settings for the <code>kendo.mobile.Application</code> instance. Below I am showing the JavaScript which instantiates the whats-er-name application.</p>
+							
+							<pre class="brush: js">
+									wrn.app = new kendo.mobile.Application($(document.body), { 
+										skin: &#039;flat&#039;,
+										initial: &#039;groupListView&#039;, //this is the initial view to load
+										init: function() {
+											//fix mouse events in iOS don&#039;t do it for android, causes more issues than it fixes
+											kendo.UserEvents.defaultThreshold(kendo.support.mobileOS.device === &#039;android&#039; ? 0:20);
+										}
+									});
+							</pre>
+
+							<p>Don't forget, creating an instance of <code>kendo.mobile.Application</code> bootstraps the entire application.</p>
+
+							<h3><strong>5.4</strong> Module Naming</h3>
+
+							<p>The application is organized into logical directories and files based on the user interface. The directories and files are semantically named based on the semantical purpose of the view or feature in the UI (read more about this in <a href="#3.5-ui-directory">section 3</a>). </p>
+
+							<p/>You can get a feel for what I am describing by simply examining the whats-er-name directories containing all of the modules in the app and comparing this to the actual whats-er-name UI.</p>
+
+<pre>
+├── index.html
+├── shared
+│   ├── css
+│   │   ├── bootstrapOverides.css
+│   │   ├── kendoOverides.css
+│   │   └── whatsername.css
+│   ├── layouts
+│   │   ├── globalLayout.css
+│   │   └── globalLayout.html
+│   ├── models
+│   │   ├── groupModel.js
+│   │   └── viewerModel.js
+│   └── utilities
+│       └── extend.js
+└── ui
+	├── appInfo
+	│   ├── appInfo.css
+	│   └── appInfoView.html
+	├── groups
+	│   ├── addGroup
+	│   │   ├── addGroupView.html
+	│   │   └── addGroupViewModel.js
+	│   └── groupList
+	│       ├── groupList.css
+	│       ├── groupListItemTemplate.html
+	│       ├── groupListView.html
+	│       └── groupListViewModel.js
+	└── nameViewer
+		├── addName
+		│   ├── addNameView.html
+		│   └── addNameViewModel.js
+		└── viewer
+			├── scrollerTemplate.html
+			├── viewerView.css
+			├── viewerView.html
+			└── viewerViewModel.js
+</pre>
+
+							<p>From the above directory tree you should note two things:</p> 
+
+							<p>1) The view, model, view-model, template, and layout files end with a descriptive word describing what type of file they are, i.e. "View", "Model", "ViewModel", "Template", or "Layout". This is extremely handy when you have a lot of files open in a code editor or are grepping for a file. </p>
+
+							<p>2) The ui directories should contain modules named with the same root words contained in the directory name (e.g. the <code>addName</code> directory contains <code>addNameView.html</code> and <code>addNameViewModel.js</code> files).</p>
+
+							<h3><strong>5.5</strong> Defining View Modules</h3>
+
+							<p>View modules are html files containing mobile <a href="http://docs.telerik.com/kendo-ui/api/javascript/mobile/ui/view">views</a> with declarative attributes and likely declaratively define mobile widgets. This shouldn't be a surprise to you if you fully grok the MVVM pattern. The view declaratively connects to the view-model. For example, in the <code>viewerView.html</code> file shown below the <code>data-model</code> attribute binds <code>viewerViewModel.js</code> to the view declaratively when the application is started.</p> 
+
+							<pre class="brush: html">
+								&lt;div id=&quot;viewerView&quot; 
+								data-role=&quot;view&quot; 
+								data-layout=&quot;default&quot;
+								data-model=&quot;wrn.viewer.viewModel&quot;
+								data-bind=&quot;events:{show:show,init:init,hide:hide}&quot;
+								&gt;
+									...
+								&lt;/div&gt;
+							</pre>
+
+							<p>When defining a view module, keep in mind each view is a mobile view widget and associated with a declaratively instantiated <a href="http://docs.telerik.com/kendo-ui/api/javascript/mobile/ui/layout">layout</a> widget. The view also contains other mobile widgets that are likely connected to a view-model associated with a model.</p>
+
+							<div class="note">
+								<div class="notes-title">Notes</div>
+								<div class="notes">
+									<ul>
+										<li>Make sure you use the name of the view file, minus the extension, as the id for the view (e.g. id=&quot;viewerView&quot; ). This pattern is used through out the whats-er-name app.</li>
+										<li>Any view specific CSS should be placed into a separate CSS file in the same directory as the HTML view. The name of the HTML view file should match the name given to the view CSS file (e.g. a viewerView.html css file would be called <code>viewerView.css</code>).</li>
+									</ul>
+								</div>
+							</div>
+
+							<h3><strong>5.6</strong> Defining Layout Modules</h3>
+
+							<p>The whats-er-name application uses a single layout for all of its mobile views (i.e. <code>/src/shared/layouts/global/globalLayout.html</code>), but if you mimic the architecture prescribed in this guide, you will probably have more than one view layout and associating styles. When this occurs, the HTML and CSS should be placed in the same directory which contains the view HTML. Make sure you end both files with the word "Layout".</p>
+
+							<p>For example, if the <code>viewerView.html</code> module used a unique layout, there would be a viewerLayout.html module and possibly a viewerLayout.css file in the same directory (or, shared directory if the view shared the layout with another view).</p>
+
+							<h3><strong>5.7</strong> Defining view-model Modules</h3>
+
+							<p>There is a strong relationship between the view and the view-model. In the MVVM pattern the view-model typically contains controller-like logic. One can declaratively create a lot of abstracted functionality in the HTML view, but it's the view-model where all of the observed JavaScript code resides that drives the view.</p>
+
+							<p>Below is an example of the the pattern used to create a view-model JavaScript module. It should look somewhat familiar, as it's a simple and common module pattern/definition used in JavaScript applications.</p>
+
+							<pre class="brush: js">
+								(function(wrn){
+
+									&#039;use strict&#039;;
+
+									//below you place anything private you don&#039;t want exposed in the viewModel
+
+									//below we create the viewModel
+
+									wrn.viewer = {  //create viewModel namespace in global
+
+											//the actual model
+											modelData: wrn.viewerModel,
+
+											//other properties or functions you want to observe and expose to html
+											init:function(){ ... },
+											show:function(){ ... },
+											anyFunction:function(){ ... },
+											anyValue:''
+										})
+									};
+
+								})(wrn); //pass in global namespace
+							</pre>
+
+							<p>Three things are occurring and should be repeated when creating view-models:</p>
+
+							<ol>
+								<li>The name space should be exactly the same name of the directory that contains the view-model module (e.g. <code>wrn.viewer</code>).</li>
+								<li>The view-model name space is an object that contains a <code>viewModel</code> property that stores an instance of <code>kendo.observable</code>.</li>
+								<li>If the view-model uses a model, then it's stored as an observable property called <code>modelData</code>, which references a model module in the name space.</li>
+							</ol>
+
+							<div class="note">
+								<div class="notes-title">Notes</div>
+								<div class="notes">
+									<ul>
+										<li>The whats-er-name application does not contain any models that are unique to a view. The two models used are shared among multiple views, and thus found in the shared directory. If a view has a unique model, it would, of course, be found in the same directory as the view-model and the rest of the supporting modules.</li>
+									</ul>
+								</div>
+							</div>
+
+							<h3><strong>5.8</strong> Defining Model Modules</h3>
+
+							<p>The pattern for creating model JavaScript files differs from creating model-view files. Models should be stored one level deep from the top global name space in a logical and semantically minded name space (e.g. <code>viewerModel</code>). This is because models are typically used by several views. In the whats-er-name application this is why the two models used in the application are found in the shared directory and not a view-specific directory. It would not be logical to place models on the name space of a specific view because of the potential of being used by more than one view. Therefore, models are never properties of view name spaces (i.e. <code>wrn.viewer.model = ...</code>).</p>
+
+							<p>Below I am showing the pattern for defining models:</p>
+
+							<pre class="brush: js">
+								(function(wrn){
+									&#039;use strict&#039;;
+
+									wrn.viewerModel = new kendo.data.DataSource({
+										offlineStorage: &#039;viewerModel&#039;,
+										schema: {
+											model: {
+												id: &quot;id&quot;
+											}
+										}
+									});
+
+									wrn.viewerModel.online(false);
+									wrn.viewerModel.read();
+
+								})(wrn); //pass in global namespace
+							</pre>
+
+							<div class="note">
+								<div class="notes-title">Notes</div>
+								<div class="notes">
+									<ul>
+										<li>Model name spaces should end with "Model".</li>
+										<li>If a model does not get used by more than one logical ui grouping, it would be perfectly logical to store it in the directory containing the rest of the ui's specific files.</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="note">
+								<div class="notes-title">Notes</div>
+								<div class="notes">
+									<ul>
+										<li>A model can often be a simple, static JSON object but it's more likely that you'll be using the Kendo UI <code>DataSource</code> abstraction to wrap local or remote data. In the whats-er-name app I am using it to force a <code>DataSource</code> into offline mode to manage JSON in <code>localStorage</code>.</li>
+									</ul>
+								</div>
+							</div>
+
+							<h3><strong>5.9</strong> Defining Utility Modules</h3>
+							
+							<p>Any utility objects/functionality needed by all JavaScript modules can be place directly on the name space object as property which specifically describes the utility. Below I show the <code>makeId.js</code> utility code as an example pattern for adding utility JavaScript modules into the whats-er-name architecture.</p>
+
+							<pre class="brush: js">
+								(function(wrn){
+
+									&#039;use strict&#039;;
+
+									wrn.makeId = function(){
+										&#039;use strict&#039;;
+										var n = 0;
+										var possible = &quot;0123456789&quot;;
+										for (var i = 0; i &lt; 15; i++){
+											n += possible.charAt(Math.floor(Math.random() * possible.length));
+										}
+										return Number(n);
+									};
+
+								})(wrn); //pass in global namespace
+							</pre>
+
+							<p>Utility modules are always stored in the <code>shared/utilities</code> directory.</p>
+
+							<h3><strong>5.10</strong> Defining Template Modules</h3>
+
+							<p>Kendo UI mobile widgets can make use of Kendo UI <a href="http://docs.telerik.com/kendo-ui/framework/templates/overview">templates</a>. The whats-er-name application uses <code>&lt;script&gt;</code> elements to house Kendo UI Mobile HTML templates in <code>.html</code> files (included into the index.html using client-side includes).</p>
+
+							<p>Shown below is an example of a template (e.g. /src/ui/nameViewer/viewer/scrollerTemplate.html) used by the mobile scroller widget in the <code>viewerView.html</code> view. </p>
+
+							<pre class="brush: html">
+								&lt;script id=&quot;scrollerTemplate&quot; type=&quot;text/x-kendo-template&quot;&gt;
+									&lt;a class=&quot;removePhotoNameBtn deleteBtn&quot; data-role=&quot;button&quot; data-bind=&quot;click:removePhotoName,invisible:notEditMode&quot; data-id=&quot;#= id #&quot;&gt;
+										&lt;span class=&quot;glyphicon glyphicon-trash&quot;&gt;&lt;/span&gt;
+									&lt;/a&gt;
+										&lt;div class=&quot;photo&quot; style=&quot;background-image:url(#= image #)&quot;&gt;&lt;/div&gt;
+										&lt;div class=&quot;photoName&quot;&gt;&lt;span&gt;#= name #&lt;/span&gt;&lt;/div&gt;
+								&lt;/script&gt;
+							</pre>
+
+							<p>Make sure you give the <code>&lt;script&gt;</code> an id (e.g. id="scrollerTemplate") so that the widgets in your views can point to the template.</p>
+
+							<div class="note">
+								<div class="notes-title">Notes</div>
+								<div class="notes">
+									<ul>
+										<li>Template module files should end with the string "Template" (e.g. <code>scrollerTemplate.html</code>)</li>
+										<li>To clarify, template modules house an html <code>&lt;script&gt;</code> element that contains HTML. Notice that Kendo UI templates construed using a <code>&lt;script&gt;</code> (<a href="http://docs.telerik.com/kendo-ui/framework/templates/overview#internal-vs-external-templates">as opposed to JS strings, in JS</a>) have a custom type of <code>text/x-kendo-template</code>.</li>
+									</ul>
+								</div>
+							</div>
+
+							<h3><strong>5.11</strong> Use Imperative Widget Instantiation When Needed</h3>
+
+							<p>Don't be too dogmatic about only using declarative instantiation patterns for widgets contained in mobile views. Sometimes it's necessary to <a href="http://docs.telerik.com/kendo-ui/basics/jquery-initialization#initialize-a-kendo-ui-widget-using-the-jquery-plugin-syntax">imperatively instantiate</a> a mobile widget using code, not markup. You simply have no choice in the matter. I chose to imperatively create the <code>kendoMobileScrollView</code> widget in the <code>viewerViewModel.js</code> file because it was logically necessary. Sometimes it's simply the path of least resistance in terms of code and code complexity. Other times, its the only solution.</p>
+
+							</div>
+
+							<!--_____________-->
+							<!--  chapter 6  -->
+							<!--_____________-->
+							<div id="chapter6" class="chapter">
+
+							<img src="images/Ninja-1.png" class="ninja noBorder" />
+							
+							<h2><strong>6.</strong> whats-er-name Coding Style</h2>
+
+							<h3><strong>6.1</strong> Editor Configuration</h3>
+
+							<p>A <code>.editorconfig</code> (found in root directory) is used to maintain <a href="http://editorconfig.org/">consistent coding styles between different code editors</a>. Below I am showing the <code><a href="https://github.com/telerik/whatsername/blob/master/.editorconfig">.editorconfig</a></code> used in the whats-er-name application.</p>
+
+							<pre class="brush: html">
+								# editorconfig.org
+								root = true
+
+								[*]
+								indent_style = tab
+								end_of_line = lf
+								charset = utf-8
+								trim_trailing_whitespace = true
+								insert_final_newline = true
+
+								[package.json,bower.json]
+								indent_style = space
+								indent_size = 2
+							</pre>
+
+							<h3><strong>6.2</strong> HTML Hinting</h3>
+
+							<p>The <a href="https://github.com/yaniswang/HTMLHint">HTMLHint</a> static code analysis tool is used to avoid simple and pesky errors that can occur in HTML.</p>
+
+							<p>In the whats-er-name app I am using a <code>.htmlhintrc</code> file (found in root directory) to setup the rules for this analysis. The analysis is currently running during the production build, but I recommend you also run it locally via your <a href="https://github.com/tgfjt/Sublime-htmlhint">code editor while coding</a>. Below are the contents of the <code><a href="https://github.com/telerik/whatsername/blob/master/.htmlhintrc">.htmlhintrc</a></code> used in the whats-er-name app.</p>
+
+							<pre class="brush: js">
+								{
+									"attr-value-double-quotes": true,
+									"tagname-lowercase": true,
+									"attr-value-not-empty": true,
+									"attr-no-duplication": true,
+									"tag-pair": true,
+									"id-unique": true,
+									"head-script-disabled": false,
+									"doctype-first": false
+								}
+
+							</pre>
+
+							<h3><strong>6.3</strong> CSS Linting</h3>
+
+							<p>The <a href="https://github.com/CSSLint/csslint">CSSLint</a> code quality tool is used to analyze CSS for errors or potential other issues that might cause problems.</p>
+
+							<p>In the whats-er-name app I am using a <code>.csslintrc</code> file (found in root directory) to setup the rules for this analysis. The analysis is currently running during the production build, but I recommend you also run it locally via your <a href="https://github.com/SublimeLinter/SublimeLinter-csslint">code editor while coding</a>. Below are the contents of the <code><a href="https://github.com/telerik/whatsername/blob/master/.csslintrc">.csslintrc</a></code> used in the whats-er-name app.</p>
+
+							<pre class="brush: js">
+								{
+									"adjoining-classes": false,
+									"box-model": false,
+									"box-sizing": false,
+									"bulletproof-font-face": false,
+									"compatible-vendor-prefixes": false,
+									"display-property-grouping": false,
+									"duplicate-background-images": true,
+									"duplicate-properties": true,
+									"empty-rules": true,
+									"errors": true,
+									"fallback-colors": false,
+									"floats": false,
+									"font-faces": false,
+									"font-sizes": false,
+									"gradients": false,
+									"ids": false,
+									"import": false,
+									"important": false,
+									"known-properties": false,
+									"outline-none": false,
+									"overqualified-elements": false,
+									"qualified-headings": false,
+									"regex-selectors": false,
+									"rules-count": false,
+									"selector-max": false,
+									"selector-max-approaching": false,
+									"shorthand": false,
+									"star-property-hack": false,
+									"text-indent": false,
+									"underscore-property-hack": false,
+									"unique-headings": false,
+									"universal-selector": false,
+									"unqualified-attributes": false,
+									"vendor-prefix": false,
+									"zero-units": false
+								}
+							</pre>
+
+							<h3><strong>6.4</strong> JS Hinting</h3>
+
+							<p>The <a href="http://jshint.com/about/">JSLint</a> tool is used to detect errors and potential problems in JavaScript code as well as enforce coding conventions.</p>
+
+							<p>In the whats-er-name app I am using a <code>.jshintrc</code> file (found in root directory) to setup the rules for this detection. JSHhint is currently running during the production build, but I recommend you also run it locally via your <a href="https://github.com/uipoet/sublime-jshint">code editor while coding</a>. Below are the contents of the <code><a href="https://github.com/telerik/whatsername/blob/master/.jshintrc">.jshintrc</a></code> used in the whats-er-name app.</p>
+
+							<pre class="brush: js">
+								{
+									maxerr: 50,
+									bitwise: true,
+									camelcase: false,
+									curly: true,
+									eqeqeq: true,
+									freeze: true,
+									forin: true,
+									immed: false,
+									indent: 4,
+									latedef: false,
+									newcap: false,
+									noarg: true,
+									noempty: true,
+									nonbsp: true,
+									nonew: false,
+									plusplus: false,
+									quotmark: false,
+									undef: false,
+									unused: true,
+									strict: true,
+									maxparams: false,
+									maxdepth: false,
+									maxstatements: false,
+									maxcomplexity: false,
+									maxlen: false,
+									asi: false,
+									boss: false,
+									debug: false,
+									eqnull: false,
+									es5: false,
+									esnext: true,
+									moz: false,
+									evil: false,
+									expr: false,
+									funcscope: false,
+									globalstrict: false,
+									iterator: false,
+									lastsemic: false,
+									laxbreak: false,
+									laxcomma: false,
+									loopfunc: false,
+									multistr: false,
+									noyield: false,
+									notypeof: false,
+									proto: false,
+									scripturl: false,
+									shadow: false,
+									sub: false,
+									supernew: false,
+									validthis: false,
+									browser: true,
+									couch: false,
+									devel: true,
+									dojo: false,
+									jasmine: false,
+									jquery: true,
+									mocha: true,
+									mootools: false,
+									node: false,
+									nonstandard: true,
+									prototypejs: false,
+									qunit: false,
+									rhino: false,
+									shelljs: false,
+									worker: false,
+									wsh: false,
+									yui: false,
+									globals: ["whatsername","wrn","kendo","_","canvasResize"]
+								}
+							</pre>
+
+							<div class="note">
+								<div class="notes-title">Notes</div>
+								<div class="notes">
+									<ul>
+										<li>Gulp is actually creating the <code>.jshintrc</code> from a file called <code><a href="https://github.com/telerik/whatsername/blob/master/.jshintrcCommented.txt">.jshintrcCommented.txt</a></code> before it uses the <code>.jshintrc</code> for configuration. I did this because I wanted a commented/documented file containing the configurations and JSON is invalid when it contains comments. So, I set the configurations in the commented file, but Gulp converts it to the <code>.jshintrc</code> file first then uses it to hint JavaScript files.</li>
+										<li>JavaScript code style can be enforced using something like <a href="http://jscs.info/">JSCS</a>. I have not implemented JS style enforcement to this degree in the whats-er-name app, but if I was going to work on this application with another developer I would likely add JSCS.</li>
+									</ul>
+								</div>
+							</div>
+
+							</div>
+
+							<!--_____________-->
+							<!--  chapter 7  -->
+							<!--_____________-->
+							<div id="chapter7" class="chapter">
+
+							<img src="images/Ninja-1.png" class="ninja noBorder" />
+							
+							<h2><strong>7.</strong> Conclusion</h2>
+
+							<p>The entire point of this guide was to offer opinionated insights into developing sites and applications using Kendo UI mobile widgets and its application logic. I have yet to offer any insights into actual hybrid mobile development. Once the Kendo UI mobile solution, as a whole, has been properly grokked, the next logical question is how does one take this knowledge and use it to develop a <a href="http://blogs.telerik.com/appbuilder/posts/12-06-14/what-is-a-hybrid-mobile-app-">hybrid mobile application</a>.</p>
+
+							<p>The next part of this guide will offer insights into hybrid mobile development using Kendo UI mobile and <a href="http://www.telerik.com/appbuilder'">AppBuilder</a> together. This will be accomplished by taking the whats-er-name application and re-developing it, assuming a hybrid approach is the focus of the insights offered.</p>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+		</div></div>
+	</div>
+
+	<!-- SCRIPTS -->
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/kendo-ui/js/kendo.ui.core.min.js"></script>
+	<script src="bower_components/jquery.breakpoints/breakpoints.js"></script>
+	<script src="bower_components/SyntaxHighlighter/scripts/XRegExp.js"></script>
+	<script src="bower_components/SyntaxHighlighter/scripts/shCore.js"></script>
+	<script src="bower_components/SyntaxHighlighter/scripts/shBrushJScript.js"></script>
+	<script src="bower_components/SyntaxHighlighter/scripts/shBrushXml.js"></script>
+	<script src="bower_components/SyntaxHighlighter/scripts/shBrushCss.js"></script>
+	<script src="bower_components/SyntaxHighlighter/scripts/shBrushBash.js"></script>
+	<script src="bower_components/jquery-waypoints/waypoints.min.js"></script>
+	<script>
+		/* jshint ignore:start */
+		SyntaxHighlighter.defaults['toolbar'] = false;
+		SyntaxHighlighter.all();
+
+		function lineWrap(){
+			var wrap = function () {
+				var elems = document.getElementsByClassName('syntaxhighlighter');
+				for (var j = 0; j < elems.length; ++j) {
+					var sh = elems[j];
+					var gLines = sh.getElementsByClassName('gutter')[0].getElementsByClassName('line');
+					var cLines = sh.getElementsByClassName('code')[0].getElementsByClassName('line');
+					var stand = 15;
+					for (var i = 0; i < gLines.length; ++i) {
+						var h = $(cLines[i]).height();
+						if (h != stand) {
+							gLines[i].setAttribute('style', 'height: ' + h + 'px !important;');
+						}
+					}
+				}
+			 };
+			var whenReady = function () {
+				if ($('.syntaxhighlighter').length === 0) {
+					setTimeout(whenReady, 800);
+				} else {
+					wrap();
+				}
+			};
+			whenReady();
+		};
+		lineWrap();
+
+		$(window).resize(function(){lineWrap()});
+
+		$('#book a').attr('target', '_blank');
+
+		//setup splitter
+		var splitter = $('#splitter').kendoSplitter({
+			panes: [
+				{ collapsible: true, collapsed: true},
+				{ collapsible: false}
+			]
+		}).data('kendoSplitter');
+
+		//create TOC
+		jQuery('.toc').each(function(index){
+	
+			jQuery('h2','#toc'+(index+1)).each(function(i){
+				//$(this).attr('id',$(this).text().replace(/ /g,'-'));
+				$(this)
+					.nextUntil('h3')
+					.andSelf()
+					.wrapAll('<div class="sec" id="'+$(this).text().replace(/ /g,'-')+'"></div>');
+				$('#toc-padding')
+					.append('<h5><a href="#'+($(this).text().replace(/[ .]/g,'-'))+'">'+$(this).html()+'</a></h5>');
+			});
+
+			jQuery('h3','#toc'+(index+1)).each(function(i){
+				//$(this).attr('id',$(this).text().replace(/ /g,'-'));
+				$(this)
+					.nextUntil('h3')
+					.andSelf()
+					.wrapAll('<div class="sec" id="'+$(this).text().replace(/ /g,'-')+'"></div>');
+				$('#toc-padding')
+					.append('<h6><a href="#'+($(this).text().replace(/[ .]/g,'-'))+'">'+$(this).html()+'</a></h6>');
+			});
+			
+		});
+
+		jQuery('.chapter').each(function(index){
+			jQuery('h2','#chapter'+(index+1)).each(function(i){
+				var foo = index+1+'';
+				//$(this).attr('id',((index+1)+($(this).text().replace(foo,'').replace(/ /g,'-'))));
+				$(this)
+					.wrap('<div class="sec" id="'+((index+1)+($(this).text().replace(foo,'').replace(/ /g,'-')))+'"></div>');
+				$('#toc-padding')
+					.append('<h5><a href="#'+(index+1)+($(this).text().replace(foo,'').replace(/ /g,'-'))+'">'+$(this).html()+'</a></h5>');
+			});
+
+			jQuery('h3','#chapter'+(index+1)).each(function(i){
+				var foo = (index+1)+'.'+(i+1)+'';
+				//$(this).attr('id',(index+1)+'.'+(i+1)+($(this).text().replace(foo,'').replace(/ /g,'-')));
+				$(this)
+					.nextUntil('h3')
+					.andSelf()
+					.wrapAll('<div class="sec" id="'+(index+1)+'.'+(i+1)+($(this).text().replace(foo,'').replace(/ /g,'-'))+'"></div>');
+				$('#toc-padding').append('<h6><a href="#'+(index+1)+'.'+(i+1)+($(this).text().replace(foo,'').replace(/ /g,'-'))+'">'+$(this).html()+'</a></h6>');
+			});  
+		});
+
+		//detect and reset panels for phones, tablets, and desktop
+		$(window).setBreakpoints({distinct: true, breakpoints: [320,480,768,1024] });
+
+		$(window).on('enterBreakpoint320',function() {
+			$('h1').css('width','200px');
+			splitter.size('.k-pane:first', '70%');
+			splitter.size('.k-pane:last', '30%');
+			splitter.toggle('.k-pane:first',false);
+		});
+		$(window).on('enterBreakpoint480',function() {
+			$('h1').css('width','350px');
+			splitter.size('.k-pane:first', '40%');
+			splitter.size('.k-pane:last', '60%');
+			splitter.toggle('.k-pane:first',false);
+		});
+		$(window).on('enterBreakpoint768',function() {
+			$('h1').css('width','600px');
+			splitter.size('.k-pane:first', '20%');
+			splitter.size('.k-pane:last', '80%');
+			splitter.toggle('.k-pane:first',false);
+		});
+		$(window).on('enterBreakpoint1024',function() {
+			$('h1').css('width','700px');
+			splitter.size('.k-pane:first', '25%');
+			splitter.size('.k-pane:last', '75%');
+			splitter.toggle('.k-pane:first',true);
+		});
+
+		//toggle
+		$( '#toggle-toc' ).on('click',function() {
+			splitter.toggle('.k-pane:first');
+			if($('#book')[0].scrollTop > 0){
+				$('#toc-padding a.active').first()[0].scrollIntoView(true);
+			}
+			return false;
+		});
+
+		window.setTimeout(function(){
+
+			$('.sec')
+			.waypoint(function(direction) {
+				var $links = $('#toc-padding a[href="#' + this.id + '"]');
+				$links.toggleClass('active', direction === 'down');
+				}, {
+				context: '#book',
+				offset: '100%'
+			})
+			.waypoint(function(direction) {
+				var $links = $('#toc-padding a[href="#' + this.id + '"]');
+				$links.toggleClass('active', direction === 'up');
+				}, {
+				context: '#book',
+				offset: function() {
+				  return -$(this).height();
+				}
+			});
+
+			
+			if($('#book')[0].scrollTop > 0){
+				$('#toc-padding a.active').first()[0].scrollIntoView(true);
+			}
+	 
+			$('#book').scroll(function(){
+				if($('#book')[0].scrollTop === 0){
+					$('#toc')[0].scrollTop = 0;
+				}else{
+					$('#toc-padding a.active').first()[0].scrollIntoView(true);
+				}
+			});
+
+			$(window).resize(function(event) {
+				$.waypoints('refresh');
+			});
+
+		},2000);
+
+		window.setTimeout(function(){ 
+			if(window.location.hash === ''){
+			$( '#toggle-toc' ).trigger('click');
+			}
+		}, 5000);
+
+
+		/* jshint ignore:end */
+
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59074517-1', 'auto');
+  ga('send', 'pageview');
+
+	</script>
+
+</body>
+</html>
