@@ -108,7 +108,7 @@ h3 a:link, h3 a:active, h3 a:visited, h3 a:hover, h2 a:link, h2 a:active, h2 a:v
 	text-decoration: none;
 }
 
-p, ol, ul{
+p, ol, ul {
 	color:#000;
 	line-height: 25px;
 	margin: 20px 0;
@@ -137,7 +137,6 @@ h5, h6 {
 	margin: 0 0 0 0;
 	font-weight: normal;
 }
-
 h6 {
 	margin-left: 10px;
 	font-size: 15px;
@@ -146,7 +145,6 @@ h6 {
 	padding-bottom:0;
 	line-height: 1.4em;
 }
-
 h5 {
 	margin-top: 30px;
 	font-family: 'Roboto Slab', serif;
@@ -154,7 +152,6 @@ h5 {
 	font-weight: 400;
 	line-height: 1.6em;
 }
-
 h5 a:link, h5 a:active, h5 a:visited, h6 a:link, h6 a:active, h6 a:visited{
 	color:#364149;
 	text-decoration: none;
@@ -162,7 +159,6 @@ h5 a:link, h5 a:active, h5 a:visited, h6 a:link, h6 a:active, h6 a:visited{
 	padding-right: 20px;
 	display: block;
 }
-
 h5 a:hover, h6 a:hover {
 	color: #5854F8;
 	text-decoration: underline;
@@ -171,16 +167,13 @@ h5 a:hover, h6 a:hover {
 #toc-padding {
 	padding: 0px 20px 20px 20px;
 }
-
 #toc {
 	background-color: #fafafa;
 }
-
 #book {
 	letter-spacing: .01rem;
 	line-height: 1.5em;
 }
-
 #center-book {
 	max-width: 800px;
 	margin: 0 auto;
@@ -209,7 +202,6 @@ h5 a:hover, h6 a:hover {
 .float-left {
 	float: left;
 }
-
 .float-right {
 	float: right;
 }
@@ -221,23 +213,20 @@ h5 a:hover, h6 a:hover {
 	font-size: 12px;
 	border-radius: 4px;
 }
-
 .notes {
 	padding: 10px;
 }
-
 .notes ul {
 	margin: 0px;
 	color: inherit;
 	padding-left: 20px;
 }
-
 .notes-title {
-	padding-left:10px;
+	padding-left: 10px;
 	background-color: #FAFAFA;
 }
 
-#author{
+#author {
 	font-size: 11px;
 	text-align: center;
 	padding:11px 0;

@@ -23,7 +23,7 @@
 	<div id="header">
 		<div>
 		<i class="fa fa-bars fa-align-center fa-lg float-left header-btn" id="toggle-toc"></i>
-		<a href="https://github.com/tjvantoll/nativescript-style-guide" target="_blank" class="fa fa-github fa-align-center fa-lg float-right header-btn" id="github"></a>
+		<a href="https://github.com/tjvantoll/nativescript-style-guide" class="fa fa-github fa-align-center fa-lg float-right header-btn" id="github"></a>
 		<h1>NativeScript Style Guide</h1>
 	</div>
 </div>
@@ -42,18 +42,17 @@
 			<div id="book">
 				<div id="center-book">
 
-<!-- Chapter 0 -->
-<div id="chapter0">
+<div class="chapter">
 	<hr>
 
-	<h2><strong>0.</strong> Introduction</h2>
+	<h2>Introduction</h2>
 
-	<h3 id="chapter0.0"><strong>0.0</strong> What is this?</h3>
+	<h3>What is this?</h3>
 	<p>This is an opinionated guide to building native mobile apps with <a href="http://nativescript.org">NativeScript</a>. The advice this guide prescribes is by no means mandatory, however, the very opinionated authors of this guide believe that following these guidelines will help you produce high-quality, maintenance friendly, and performant apps with NativeScript.</p>
 
 	<p>Feel free to ignore tips that don't apply to your projects, or to build upon this advice based on your app's requirements. If you find an error in this guide, or would like to suggest new guidelines, feel free to <a href="https://github.com/NativeScript/nativescript-style-guide/issues/new">open an issue</a> in <a href="https://github.com/NativeScript/nativescript-style-guide">this guide's GitHub repo</a>.
 
-	<h3 id="chapter0.1"><strong>0.1</strong> Who wrote this?</h3>
+	<h3>Who wrote this?</h3>
 	<p>The following people have contributed to this guide in some fashion—aka, if you disagree with the advice this guide presents, here are some people you can yell at:</p>
 	<ul>
 		<li><a href="http://tjvantoll.com">TJ VanToll</a> | <a href="http://twitter.com/tjvantoll">@tjvantoll</a></li>
@@ -61,18 +60,17 @@
 		<li>Sebastian Witalec | <a href="https://twitter.com/sebawita">@sebawita</a></li>
 	</ul>
 
-	<h3 id="chapter0.2"><strong>0.2</strong> Prerequisites</h3>
+	<h3>Prerequisites</h3>
 	<p>This guides assumes you know how to create and run a NativeScript project. If you don't, start on the <a href="https://github.com/nativescript/nativescript-cli">NativeScript getting started page</a>, and come back here when you've got the NativeScript basics down and are looking to create a real app.</p>
 </div>
 
-<!-- Chapter 1 -->
-<div id="chapter1">
+<div class="chapter">
 	<hr>
 
-	<h2><strong>1.</strong> Folder structure</h2>
+	<h2>Folder structure</h2>
 	<p>The most contentious religious debates in the software world occur when deciding on naming conventions, so to set the tone of this <i>opinionated</i> guide, folder structure seems like a good place to start.</p>
 
-	<h3 id="chapter1.0"><strong>1.0</strong> Folder structure overview</h3>
+	<h3>Folder structure overview</h3>
 	<p>Here is our recommended folder structure:</p>
 
 <pre><code>.
@@ -100,40 +98,12 @@
     └── ios
 </code></pre>
 
-<p>A couple things to note about this structure:</p>
-<ul>
-	<li></li>
-</ul>
+	<p>The following sections provide more specific advice based on this structure.</p>
 
-</div>
+	<h3>Exclude the <code>platforms</code> folder from source control</h3>
+	<p>The <code>platforms</code> folder contains NativeScript-generated code for each platform your app runs on. Because this code is generated it doesn't belong in source control. If you're a git user you can exclude this folder by adding <code>platforms/</code> to your <code>.gitignore</code>.</p>
 
-<!-- Chapter 1 -->
-<div id="chapter2">
-	<hr>
-
-	<h2><strong>2.</strong> NativeScript Do's</h2>
-
-	<h3 id="chapter2.0"><strong>2.0</strong> Separate your model logic from your view logic</h3>
-	<p>???</p>
-
-	<h3 id="chapter2.1"><strong>2.1</strong> Use MVVM data binding</h3>
-	<p>???</p>
-
-	<h3 id="chapter2.2"><strong>2.2</strong> Use npm modules</h3>
-	<p>???</p>
-</div>
-
-<!-- Chapter 3 -->
-<div id="chapter3">
-	<hr>
-
-	<h2><strong>3.</strong> NativeScript Don'ts</h2>
-
-	<h3 id="chapter3.0"><strong>3.0</strong> Don't add the <code>platforms</code> directory to source control</h3>
-	<p>???</p>
-
-	<h3 id="chapter3.1"><strong>3.1</strong> Don't add the <code>node_modules</code> directory to source control</h3>
-	<p>???</p>
+	<h3>Exclude the <code>node_modules</code> folder from source control</h3>
 </div>
 
 </div> <!-- #center-book -->

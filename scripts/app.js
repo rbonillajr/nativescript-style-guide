@@ -9,15 +9,19 @@
 	}).data( "kendoSplitter" );
 
 	var toc = $( "#toc-padding" );
-	$( "div[id*=chapter]" ).each(function( chapterNumber ) {
-		$( "h2", "#chapter" + chapterNumber ).each(function( i ) {
+	$( ".chapter" ).each(function( chapterNumber ) {
+		$( this ).find( "h2" ).each(function() {
+			$( this ).prepend( "<strong>" + chapterNumber + ". </strong>" );
 			toc.append( "<h5><a href='#chapter" + chapterNumber + "'>" +
 				$( this ).html() + "</a></h5>" );
 		});
 
-		$( "h3", "#chapter" + chapterNumber ).each(function( i ) {
-			var hash = chapterNumber + "." + i + "";
-			toc.append( "<h6><a href='#chapter" + chapterNumber + "." + i + "'>" +
+		$( this ).find( "h3" ).each(function( sectionNumber ) {
+			var hash = chapterNumber + "." + sectionNumber + "";
+			$( this )
+				.attr( "id", "chapter" + hash )
+				.prepend( "<strong>" + hash + ". </strong>" );
+			toc.append( "<h6><a href='#chapter" + chapterNumber + "." + sectionNumber + "'>" +
 				$( this ).html() + "</a></h6>" );
 		});
 	});
