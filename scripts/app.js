@@ -3,7 +3,7 @@
 
 	var splitter = $( "#splitter" ).kendoSplitter({
 		panes: [
-			{ collapsible: true, size: "25%" },
+			{ collapsible: true, size: "300px" },
 			{ collapsible: false }
 		]
 	}).data( "kendoSplitter" );
