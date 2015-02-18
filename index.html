@@ -57,6 +57,8 @@
 	<p>The following people have contributed to this guide in some fashion—aka, if you disagree with the advice this guide presents, here are some people you can yell at:</p>
 	<ul>
 		<li><a href="http://tjvantoll.com">TJ VanToll</a> | <a href="http://twitter.com/tjvantoll">@tjvantoll</a></li>
+		<li>Valio Stoychev | <a href="https://twitter.com/valiostoychev">@valiostoychev</a></li>
+		<li>Sebastian Witalec | <a href="https://twitter.com/sebawita">@sebawita</a></li>
 	</ul>
 
 	<h3 id="chapter0.2"><strong>0.2</strong> Prerequisites</h3>
@@ -67,28 +69,57 @@
 <div id="chapter1">
 	<hr>
 
-	<h2><strong>1.</strong> NativeScript Do's</h2>
+	<h2><strong>1.</strong> Folder structure</h2>
+	<p>The most contentious religious debates in the software world occur when deciding on naming conventions, so to set the tone of this <i>opinionated</i> guide, folder structure seems like a good place to start.</p>
 
-	<h3 id="chapter1.0"><strong>1.0</strong> Separate your model logic from your view logic</h3>
-	<p>???</p>
+	<h3 id="chapter1.0"><strong>1.0</strong> Folder structure overview</h3>
+	<p>Here is our recommended folder structure:</p>
 
-	<h3 id="chapter1.1"><strong>1.1</strong> Use MVVM data binding</h3>
-	<p>???</p>
+<pre><code>.
+├── app
+│   ├── App_Resources
+│   │   ├── android
+│   │   └── ios
+│   ├── app.css
+│   ├── app.js
+│   ├── css
+│   │   └── ...
+│   ├── lib
+│   │   └── ...
+│   ├── models
+│   │   └── ...
+│   ├── node_modules
+│   │   └── ...
+│   ├── package.json
+│   ├── tns_modules
+│   │   └── ...
+│   └── view-models
+│   │   └── ...
+└── platforms
+    ├── android
+    └── ios
+</code></pre>
 
-	<h3 id="chapter1.2"><strong>1.2</strong> Use npm modules</h3>
-	<p>???</p>
+<p>A couple things to note about this structure:</p>
+<ul>
+	<li></li>
+</ul>
+
 </div>
 
-<!-- Chapter 2 -->
+<!-- Chapter 1 -->
 <div id="chapter2">
 	<hr>
 
-	<h2><strong>2.</strong> NativeScript Don'ts</h2>
+	<h2><strong>2.</strong> NativeScript Do's</h2>
 
-	<h3 id="chapter2.0"><strong>2.0</strong> Don't add the <code>platforms</code> directory to source control</h3>
+	<h3 id="chapter2.0"><strong>2.0</strong> Separate your model logic from your view logic</h3>
 	<p>???</p>
 
-	<h3 id="chapter2.1"><strong>2.1</strong> Don't add the <code>node_modules</code> directory to source control</h3>
+	<h3 id="chapter2.1"><strong>2.1</strong> Use MVVM data binding</h3>
+	<p>???</p>
+
+	<h3 id="chapter2.2"><strong>2.2</strong> Use npm modules</h3>
 	<p>???</p>
 </div>
 
@@ -96,7 +127,13 @@
 <div id="chapter3">
 	<hr>
 
-	<h2><strong>3.</strong> Folder structure</h2>
+	<h2><strong>3.</strong> NativeScript Don'ts</h2>
+
+	<h3 id="chapter3.0"><strong>3.0</strong> Don't add the <code>platforms</code> directory to source control</h3>
+	<p>???</p>
+
+	<h3 id="chapter3.1"><strong>3.1</strong> Don't add the <code>node_modules</code> directory to source control</h3>
+	<p>???</p>
 </div>
 
 </div> <!-- #center-book -->
