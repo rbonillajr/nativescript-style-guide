@@ -161,9 +161,3 @@ window.setTimeout(function(){
 	});
 
 },2000);
-
-window.setTimeout(function(){ 
-	if(window.location.hash === ''){
-	$( '#toggle-toc' ).trigger('click');
-	}
-}, 5000);
