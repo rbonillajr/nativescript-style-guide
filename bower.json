@@ -11,12 +11,9 @@
     "bower_components"
   ],
   "dependencies": {
-    "jquery-waypoints": "~2.0.5",
     "kendo-ui": "~2014.2.903",
     "jquery": "1.11.1",
     "normalize-css": "~3.0.2",
-    "jquery.breakpoints": "*",
-    "SyntaxHighlighter": "~3.0.83",
     "font-awesome": "~4.2.0"
   }
 }
