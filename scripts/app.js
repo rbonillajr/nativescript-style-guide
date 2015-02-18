@@ -16,8 +16,8 @@
 		});
 
 		$( "h3", "#chapter" + chapterNumber ).each(function( i ) {
-			var hash = chapterNumber + "." + ( i + 1 ) + "";
-			toc.append( "<h6><a href='#chapter" + chapterNumber + "." + ( i + 1 ) + "'>" +
+			var hash = chapterNumber + "." + i + "";
+			toc.append( "<h6><a href='#chapter" + chapterNumber + "." + i + "'>" +
 				$( this ).html() + "</a></h6>" );
 		});
 	});
