@@ -199,9 +199,9 @@ exports.load = function( args ) {
 	<p>Here, you use a <code>Character.js</code> file to contain your character model data, which your view model (<code>characterData.js</code>) uses. The advantage again is in the reusability that this approach offers. Any character-specific code can go in <code>Character.js</code>, and any file in your app that needs that functionality can use it without worrying about dependencies.</p>
 
 	<h3>Use npm modules to solve problems</h3>
-	<p><a href="https://www.npmjs.com/">npm</a> has over 100,000 modules. If you have a problem there's a decent chance that someone has already written a module to solve that problem for you.</p>
+	<p><a href="https://www.npmjs.com/">npm</a> has over 100,000 modules. If you have a problem there's a decent chance that someone has already written a module to solve that problem for you. Not every npm module is going to work with NativeScript, for example modules that depend on the DOM (e.g. Kendo UI), but a whole lot of them will. Let's look at a few that do.</p>
 
-	<p>Now not every npm module is going to work with NativeScript, for example modules that depend on the DOM (e.g. Kendo UI), but a whole lot of them will.</p>
+	<p>Suppose you want to sort the array of characters from our previous example into alphabetical order.
 
 	<h3>Embrace the platform</h3>
 	<p>???</p>
