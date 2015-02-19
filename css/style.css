@@ -3,6 +3,7 @@ body, html {
 	padding: 0;
 	height: 100%;
 	font-family: "Open Sans", "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #000;
 	text-rendering: optimizeLegibility;
 	overflow: hidden;
 }
@@ -26,7 +27,6 @@ hr {
 h1, h2, h3 {
 	font-family: 'Roboto Slab', serif;
 	font-weight: 300;
-	color: #000;
 }
 h1 {
 	margin: 0 auto;
@@ -42,14 +42,14 @@ h2 strong, h3 strong, h6 strong {
 }
 h2 {
 	margin: 50px 0 40px 0;
-	padding: 0 0 0 0;
+	padding: 0;
 	letter-spacing: .01rem;
 	font-size: 40px;
 	line-height: 1.2em;
 	letter-spacing: -1px;
 }
 h3 {
-	margin: 0 0 0 0;
+	margin: 0;
 	padding: 0 0 10px 0;
 	line-height: 1.2em;
 	letter-spacing: .01rem;
@@ -64,7 +64,6 @@ h3 a:link, h3 a:active, h3 a:visited, h3 a:hover, h2 a:link, h2 a:active, h2 a:v
 }
 
 p, ol, ul {
-	color: #000;
 	line-height: 25px;
 	margin: 20px 0;
 }
@@ -86,8 +85,8 @@ ol li, ul li{
 h5, h6 {
 	letter-spacing: .01rem;
 	color: #364149;
-	padding: 0 0 0 0;
-	margin: 0 0 0 0;
+	padding: 0;
+	margin: 0;
 	font-weight: normal;
 }
 h6 {
@@ -116,43 +115,22 @@ h5 a:hover, h6 a:hover {
 	text-decoration: underline;
 }
 
-#container {
-	display: table; 
-	width: 100%;
-	height: 100%;
-	color: #000;
-	border: none;
-}
-#content {
-	display: table-row;
-	width: 100%;
-}
-#content > div {
-	display: table-cell;
-	width: 100%;
-	height: 100%;
-}
-
 #toc-padding {
 	padding: 0px 20px 20px 20px;
 }
-#toc {
-	background-color: #fafafa;
-}
-#book {
-	letter-spacing: .01rem;
-	line-height: 1.5em;
-}
-#center-book {
-	max-width: 800px;
-	margin: 0 auto;
-	padding: 0px 20px 50px 20px;
+.author {
+	font-size: 0.8em;
+	text-align: center;
+	padding: 5em 0 1em 0;
+	border-bottom: 1px solid #EDEDED;
 }
 
 #header {
+	position: fixed;
+	display: flex;
+	z-index: 2;
+	text-align: center;
 	width: 100%;
-}
-#header > div {
 	height: 50px;
 	border-bottom: 1px solid #EDEDED;
 	background-color: #fafafa;
@@ -174,11 +152,14 @@ h5 a:hover, h6 a:hover {
 	text-decoration: none;
 }
 
-.float-left {
-	float: left;
+#book {
+	letter-spacing: .01rem;
+	line-height: 1.5em;
 }
-.float-right {
-	float: right;
+#center-book {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 1em 20px 50px 20px;
 }
 
 .note {
@@ -201,19 +182,9 @@ h5 a:hover, h6 a:hover {
 	background-color: #FAFAFA;
 }
 
-#author {
-	font-size: 11px;
-	text-align: center;
-	padding:11px 0;
-	border-bottom: 1px solid #EDEDED;
-}
-
 @media (max-width: 700px) {
 	body {
 		overflow: auto;
-	}
-	#container, #content, #content > div {
-		display: block;
 	}
 	#toc {
 		position: static !important;

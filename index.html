@@ -20,28 +20,24 @@
 </head>
 <body>
 
-<div id="container">
-	<div id="header">
-		<div>
-			<i class="fa fa-bars fa-align-center fa-lg float-left header-btn" id="toggle-toc"></i>
-			<a href="https://github.com/tjvantoll/nativescript-style-guide" class="fa fa-github fa-align-center fa-lg float-right header-btn" id="github"></a>
-			<h1>NativeScript Style Guide</h1>
-		</div>
+<div id="header">
+	<i class="fa fa-bars fa-align-center fa-lg header-btn" id="toggle-toc"></i>
+	<h1>NativeScript Style Guide</h1>
+	<a href="https://github.com/tjvantoll/nativescript-style-guide" class="fa fa-github fa-align-center fa-lg header-btn"></a>
+</div>
+
+
+<div id="splitter">
+
+	<!-- Table of contents -->
+	<div id="toc">
+		<div class="author">by <a href="http://tjvantoll.com">TJ VanToll</a> v 1.0</div>
+		<div id="toc-padding"></div>
 	</div>
 
-	<div id="content">
-		<div>
-			<div id="splitter">
-
-				<!-- Table of contents -->
-				<div id="toc">
-					<div id="author">by <a href="http://tjvantoll.com">TJ VanToll</a> v 1.0</div>
-					<div id="toc-padding"></div>
-				</div>
-
-				<!-- The contents of the book itself -->
-				<div id="book">
-					<div id="center-book">
+	<!-- The contents of the book itself -->
+	<div id="book">
+		<div id="center-book">
 
 <div class="chapter">
 	<h2>Introduction</h2>
@@ -54,7 +50,7 @@
 	<h3>Who wrote this?</h3>
 	<p>The following people have contributed to this guide in some fashion—aka, if you disagree with the advice this guide presents, here are some people you can yell at:</p>
 	<ul>
-		<li><a href="http://tjvantoll.com">TJ VanToll</a> | <a href="http://twitter.com/tjvantoll">@tjvantoll</a></li>
+		<li>TJ VanToll | <a href="http://twitter.com/tjvantoll">@tjvantoll</a></li>
 		<li>Valio Stoychev | <a href="https://twitter.com/valiostoychev">@valiostoychev</a></li>
 		<li>Sebastian Witalec | <a href="https://twitter.com/sebawita">@sebawita</a></li>
 	</ul>
@@ -253,8 +249,6 @@ exports.load = function( args ) {
 </div> <!-- #center-book -->
 </div> <!-- #book -->
 </div> <!-- #splitter -->
-</div>
-</div> <!-- #container -->
 
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/kendo-ui/js/kendo.ui.core.min.js"></script>
