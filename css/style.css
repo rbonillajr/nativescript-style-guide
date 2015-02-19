@@ -247,6 +247,9 @@ h5 a:hover, h6 a:hover {
 	body {
 		overflow: auto;
 	}
+	#container, #container > div, #container > div > div {
+		display: block;
+	}
 	#toc {
 		position: static !important;
 	}
