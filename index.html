@@ -143,8 +143,65 @@ exports.load = function( args ) {
 
 	<p>This application's model data is mixed in with view code. The disadvantage of this approach being, if you want to reuse this character data on other pages in your app, you're going to need to duplicate code. Let's look at how you can refactor this code to make it more modular.</p>
 
-	<h3>Use npm modules</h3>
-	<p>???</p>
+	<p>A good first step is to move the data itself into a separate file:</p>
+
+<pre class="line-numbers"><code class="language-javascript">// characterData.js
+var observableModule = require( "data/observable" ),
+    observableArray = require( "data/observable-array" ),
+    data = new observableModule.Observable();
+
+data.set( "characters", new observableArray.ObservableArray([
+    { name: "Sonic" }, { name: "Tails" }, { name: "Knuckles" }
+]));
+
+module.exports = data;</code></pre>
+
+<pre class="line-numbers"><code class="language-javascript">// page.js
+var characterData = require( "./characterData" );
+
+exports.load = function( args ) {
+    args.object.bindingContext = characterData;
+}</code></pre>
+
+	<p>This change not only cleans up your view's code, but also moves the character data to a more reusable location.</p>
+
+	<blockquote>These examples assume that all files are in the same folder. In a more realistic example you should have a more complex structure to organize your files. Project folder structure is the topic of <a href="#chapter2">Chapter 2</a>.</blockquote>
+
+	<p>In the example above `characterData.js` acts as a view model, which you can think of as a model object's whose explicit purpose is to interact with a view. As a further enhancement, you may choose to additionally abstract out your model objects into their own files. Here's what that looks like for our character example:</p>
+
+<pre class="line-numbers"><code class="language-javascript">// Character.js
+function Character( name ) {
+    this.name = name;
+}
+module.exports = Character;</code></pre>
+
+<pre class="line-numbers"><code class="language-javascript">// characterData.js
+var observableModule = require( "data/observable" ),
+    observableArray = require( "data/observable-array" ),
+    Character = require( "./Character" ),
+    data = new observableModule.Observable();
+
+data.set( "characters", new observableArray.ObservableArray([
+    new Character( "Sonic" ),
+    new Character( "Tails" ),
+    new Character( "Knuckles" )
+]));
+
+module.exports = data;</code></pre>
+
+<pre class="line-numbers"><code class="language-javascript">// page.js
+var characterData = require( "./characterData" );
+
+exports.load = function( args ) {
+    args.object.bindingContext = characterData;
+}</code></pre>
+
+	<p>Here, you use a <code>Character.js</code> file to contain your character model data, which your view model (<code>characterData.js</code>) uses. The advantage again is in the reusability that this approach offers. Any character-specific code can go in <code>Character.js</code>, and any file in your app that needs that functionality can use it without worrying about dependencies.</p>
+
+	<h3>Use npm modules to solve problems</h3>
+	<p><a href="https://www.npmjs.com/">npm</a> has over 100,000 modules. If you have a problem there's a decent chance that someone has already written a module to solve that problem for you.</p>
+
+	<p>Now not every npm module is going to work with NativeScript, for example modules that depend on the DOM (e.g. Kendo UI), but a whole lot of them will.</p>
 
 	<h3>Embrace the platform</h3>
 	<p>???</p>
