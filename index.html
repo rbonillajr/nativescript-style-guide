@@ -15,6 +15,7 @@
 	<link href="bower_components/normalize-css/normalize.css" rel="stylesheet">
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
 	<link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="css/prism.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
 </head>
 <body>
@@ -73,12 +74,12 @@
 
 	<p>As an example suppose you want to display a list of characters in a ListView control. Here's an implementation that doesn't use MVVM:</p>
 
-<pre><code>&lt;!-- page.xml --&gt;
+<pre class="line-numbers"><code class="language-markup">&lt;!-- page.xml --&gt;
 &lt;Page navigatedTo="load"&gt;
     &lt;ListView id="characters" /&gt;
 &lt;/Page&gt;</code></pre>
 
-<pre><code>// page.js
+<pre class="line-numbers"><code class="language-javascript">// page.js
 var labelModule = require( "ui/label" ),
     viewModule = require( "ui/core/view" );
 
@@ -100,7 +101,7 @@ exports.load = function( args ) {
 
 	<p>Here's an example that works the same but uses an MVVM implementation:</p>
 
-<pre><code>&lt;-- page.xml --&gt;
+<pre class="line-numbers"><code class="language-markup">&lt;-- page.xml --&gt;
 &lt;Page navigatedTo="load"&gt;
     &lt;ListView items="{{ characters }}"&gt;
         &lt;ListView.itemTemplate&gt;
@@ -109,7 +110,7 @@ exports.load = function( args ) {
     &lt;/ListView&gt;
 &lt;/Page&gt;</code></pre>
 
-<pre><code>// page.js
+<pre class="line-numbers"><code class="language-javascript">// page.js
 var observableModule = require( "data/observable" ),
     observableArray = require( "data/observable-array" ),
     data = new observableModule.Observable();
@@ -185,6 +186,7 @@ exports.load = function( args ) {
 
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/kendo-ui/js/kendo.ui.core.min.js"></script>
+<script src="scripts/prism.js"></script>
 <script src="scripts/app.js"></script>
 
 </body>
