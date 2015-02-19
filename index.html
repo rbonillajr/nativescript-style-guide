@@ -126,7 +126,22 @@ exports.load = function( args ) {
 	<p>Here, the JavaScript code now knows nothing about the view's XML. JavaScript creates the data structure, and the XML code binds to the data using the <code>{{ }}</code> syntax. The MVVM approach also allows you to move the ListView's item template definition out of JavaScript, and into XML (with the <code>&lt;ListView.itemTemplate&gt;</code> element), which is far more readable.</p>
 
 	<h3>Divide your code into small modular files</h3>
-	<p>Like the MVVM patter, using small modular files makes 
+	<p>Like the MVVM pattern, using small modular files makes your code more readable and maintainable. For example, consider the code from the previous example:</p>
+
+<pre class="line-numbers"><code class="language-javascript">// page.js
+var observableModule = require( "data/observable" ),
+    observableArray = require( "data/observable-array" ),
+    data = new observableModule.Observable();
+
+data.set( "characters", new observableArray.ObservableArray([
+    { name: "Sonic" }, { name: "Tails" }, { name: "Knuckles" }
+]));
+
+exports.load = function( args ) {
+    args.object.bindingContext = data;
+}</code></pre>
+
+	<p>This application's model data is mixed in with view code. The disadvantage of this approach being, if you want to reuse this character data on other pages in your app, you're going to need to duplicate code. Let's look at how you can refactor this code to make it more modular.</p>
 
 	<h3>Use npm modules</h3>
 	<p>???</p>
