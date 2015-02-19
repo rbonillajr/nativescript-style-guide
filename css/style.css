@@ -158,7 +158,7 @@ h5 a:hover, h6 a:hover {
 }
 #center-book {
 	max-width: 800px;
-	margin: 0 auto;
+	margin: 0 auto 0 2em;
 	padding: 1em 20px 50px 20px;
 }
 
