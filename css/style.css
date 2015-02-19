@@ -242,3 +242,27 @@ h5 a:hover, h6 a:hover {
 	padding: 0px 6px;
 	margin: 0 10px 0 0;
 }
+
+@media (max-width: 700px) {
+	body {
+		overflow: auto;
+	}
+	#toc {
+		position: static !important;
+	}
+	#toc.k-state-collapsed {
+		height: 0 !important;
+	}
+	#toc:not(.k-state-collapsed) {
+		width: 100% !important;
+		height: auto !important;
+	}
+	#book {
+		position: static !important;
+		width: 100% !important;
+		height: auto !important;
+	}
+	.k-splitbar {
+		display: none;
+	}
+}
