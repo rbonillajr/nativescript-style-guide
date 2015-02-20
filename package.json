@@ -13,6 +13,7 @@
   "homepage": "https://nativescript.github.io/nativescript-style-guide",
   "devDependencies": {
     "gulp": "^3.8.11",
+    "gulp-concat": "^2.5.1",
     "gulp-sass": "^1.3.3",
     "gulp-watch": "^4.1.1"
   }
