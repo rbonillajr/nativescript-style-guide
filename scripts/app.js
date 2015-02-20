@@ -1,13 +1,6 @@
 (function() {
 	"use strict";
 
-	var splitter = $( "#splitter" ).kendoSplitter({
-		panes: [
-			{ collapsible: true, collapsed: $( window ).width() < 700, size: "300px" },
-			{ collapsible: false }
-		]
-	}).data( "kendoSplitter" );
-
 	var toc = $( "#toc-padding" );
 	$( ".chapter" ).each(function( chapterNumber ) {
 		$( this ).find( "h2" ).each(function() {
@@ -29,7 +22,6 @@
 	});
 
 	$( "#toggle-toc" ).on( "click",function() {
-		splitter.toggle( ".k-pane:first" );
-		return false;
+		$( "body" ).toggleClass( "no-toc" );
 	});
 }());

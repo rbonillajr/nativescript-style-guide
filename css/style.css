@@ -5,7 +5,6 @@ body, html {
 	font-family: "Open Sans", "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #000;
 	text-rendering: optimizeLegibility;
-	overflow: hidden;
 }
 
 a:link, a:visited, a:active {
@@ -115,6 +114,17 @@ h5 a:hover, h6 a:hover {
 	text-decoration: underline;
 }
 
+#container {
+	display: flex;
+}
+#toc {
+	position: fixed;
+	top: 0;
+	width: 300px;
+	height: 100%;
+	overflow: auto;
+	border-right: 1px solid #EDEDED;
+}
 #toc-padding {
 	padding: 0px 20px 20px 20px;
 }
@@ -125,8 +135,16 @@ h5 a:hover, h6 a:hover {
 	border-bottom: 1px solid #EDEDED;
 }
 
+body.no-toc #toc {
+	display: none;
+}
+body.no-toc #book {
+	margin: 0 auto;
+}
+
 #header {
 	position: fixed;
+	display: -webkit-box;
 	display: flex;
 	z-index: 2;
 	text-align: center;
@@ -155,6 +173,7 @@ h5 a:hover, h6 a:hover {
 #book {
 	letter-spacing: .01rem;
 	line-height: 1.5em;
+	margin-left: 300px;
 }
 #center-book {
 	max-width: 800px;
@@ -183,25 +202,8 @@ h5 a:hover, h6 a:hover {
 }
 
 @media (max-width: 700px) {
-	body {
-		overflow: auto;
-	}
 	#toc {
-		position: static !important;
-	}
-	#toc.k-state-collapsed {
-		height: 0 !important;
-	}
-	#toc:not(.k-state-collapsed) {
-		width: 100% !important;
-		height: auto !important;
-	}
-	#book {
-		position: static !important;
-		width: 100% !important;
-		height: auto !important;
-	}
-	.k-splitbar {
-		display: none;
+		position: static;
+		width: 100%;
 	}
 }
