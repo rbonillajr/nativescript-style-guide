@@ -15,8 +15,7 @@ gulp.task( "sass", function () {
 });
 
 gulp.task( "scripts", function() {
-	gulp.src([ "bower_components/jquery/dist/jquery.min.js", 
-		"scripts/prism.js", "scripts/app.js" ])
+	gulp.src([ "scripts/jquery.js", "scripts/prism.js", "scripts/app.js" ])
 		.pipe( concat( "built.js" ) )
 		.pipe( gulp.dest( "./scripts/" ) );
 });
