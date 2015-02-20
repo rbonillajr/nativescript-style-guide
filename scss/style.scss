@@ -1,6 +1,6 @@
 @import "fonts";
+@import "normalize";
 @import "prism";
-@import "../bower_components/normalize-css/normalize.css";
 @import "../bower_components/font-awesome/css/font-awesome.css";
 
 body, html {
@@ -69,6 +69,14 @@ h3 a:link, h3 a:active, h3 a:visited, h3 a:hover, h2 a:link, h2 a:active, h2 a:v
 	text-decoration: none;
 }
 
+h2::before, h3::before {
+	content: " ";
+	display: block;
+	margin-top: -70px;
+	height: 70px;
+	visibility: hidden;
+}
+
 p, ol, ul {
 	line-height: 25px;
 	margin: 20px 0;
@@ -108,7 +116,7 @@ h5 {
 	line-height: 1.6em;
 }
 h5 a:link, h5 a:active, h5 a:visited, h6 a:link, h6 a:active, h6 a:visited{
-	color:#364149;
+	color: #364149;
 	text-decoration: none;
 	padding: 0px 0;
 	padding-right: 20px;
