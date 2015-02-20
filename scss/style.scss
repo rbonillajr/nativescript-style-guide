@@ -215,6 +215,8 @@ body.no-toc #book {
 	#toc {
 		width: 100%;
 		z-index: 2;
+		overflow: scroll;
+		-webkit-overflow-scrolling: touch;
 	}
 	#book {
 		margin: 0 auto;

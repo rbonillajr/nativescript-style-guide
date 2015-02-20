@@ -340,6 +340,8 @@ body.no-toc #book {
     overflow: hidden; }
   #toc {
     width: 100%;
-    z-index: 2; }
+    z-index: 2;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch; }
   #book {
     margin: 0 auto; } }
