@@ -1,8 +1,12 @@
 (function() {
 	"use strict";
 
+	function isMobile() {
+		return $( window ).width() <= 700;
+	}
+
 	// TODO: Don't do this in JS. Ugh.
-	if ( $( window ).width() <= 700 ) {
+	if ( isMobile() ) {
 		$( "body" ).addClass( "no-toc" );
 	}
 
@@ -28,5 +32,10 @@
 
 	$( "#toggle-toc" ).on( "click",function() {
 		$( "body" ).toggleClass( "no-toc" );
+	});
+	$( "#toc" ).on( "click", "a", function() {
+		if ( isMobile() ) {
+			$( "body" ).addClass( "no-toc" );
+		}
 	});
 }());
