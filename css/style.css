@@ -253,6 +253,7 @@ h5 a:hover, h6 a:hover {
   text-decoration: underline; }
 
 #container {
+  display: -webkit-flex;
   display: flex; }
 
 #toc {
@@ -280,7 +281,7 @@ body.no-toc #book {
 
 #header {
   position: fixed;
-  display: -webkit-box;
+  display: -webkit-flex;
   display: flex;
   z-index: 2;
   text-align: center;
