@@ -26,10 +26,11 @@ hr {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'roboto_slabregular', "Helvetica Neue", Helvetica, serif;
-}
-h1, h2, h3 {
+	font-family: "roboto_slablight", "Helvetica Neue", Helvetica, serif;
 	font-weight: 300;
+}
+h2, h3, h5 {
+	font-family: "roboto_slabregular", "Helvetica Neue", Helvetica, serif;
 }
 h1 {
 	margin: 0 auto;
@@ -41,7 +42,6 @@ h1 {
 }
 h2 strong, h3 strong, h6 strong {
 	color: #5854F8;
-	font-weight: normal;
 }
 h2 {
 	margin: 50px 0 40px 0;
@@ -90,7 +90,6 @@ h5, h6 {
 	color: #364149;
 	padding: 0;
 	margin: 0;
-	font-weight: normal;
 }
 h6 {
 	margin-left: 10px;
