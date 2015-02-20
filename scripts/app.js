@@ -1,6 +1,11 @@
 (function() {
 	"use strict";
 
+	// TODO: Don't do this in JS. Ugh.
+	if ( $( window ).width() <= 700 ) {
+		$( "body" ).addClass( "no-toc" );
+	}
+
 	var toc = $( "#toc-padding" );
 	$( ".chapter" ).each(function( chapterNumber ) {
 		$( this ).find( "h2" ).each(function() {

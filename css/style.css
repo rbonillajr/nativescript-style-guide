@@ -262,6 +262,7 @@ h5 a:hover, h6 a:hover {
   width: 300px;
   height: 100%;
   overflow: auto;
+  background-color: white;
   border-right: 1px solid #EDEDED; }
 
 #toc-padding {
@@ -283,7 +284,7 @@ body.no-toc #book {
   position: fixed;
   display: -webkit-flex;
   display: flex;
-  z-index: 2;
+  z-index: 3;
   text-align: center;
   width: 100%;
   height: 50px;
@@ -335,9 +336,10 @@ body.no-toc #book {
 @media (max-width: 700px) {
   #container {
     display: block; }
+  body:not(.no-toc) {
+    overflow: hidden; }
   #toc {
-    position: static;
-    display: block;
-    width: 100%; }
+    width: 100%;
+    z-index: 2; }
   #book {
     margin: 0 auto; } }
