@@ -1,6 +1,8 @@
 (function() {
 	"use strict";
 
+	FastClick.attach( document.body );
+
 	function isMobile() {
 		return $( window ).width() <= 700;
 	}
@@ -30,8 +32,9 @@
 		});
 	});
 
-	$( "#toggle-toc" ).on( "click",function() {
+	$( "#toggle-toc" ).on( "click", function() {
 		$( "body" ).toggleClass( "no-toc" );
+		return false;
 	});
 	$( "#toc" ).on( "click", "a", function() {
 		if ( isMobile() ) {
