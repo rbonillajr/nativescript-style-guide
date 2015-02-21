@@ -697,4 +697,6 @@ body.no-toc #book {
     overflow: scroll;
     -webkit-overflow-scrolling: touch; }
   #book {
-    margin: 0 auto; } }
+    margin: 0 auto;
+    padding-left: 1em;
+    padding-right: 1em; } }
