@@ -1,11 +1,12 @@
 var gulp = require( "gulp" ),
 	concat = require( "gulp-concat" ),
 	fileInclude = require( "gulp-file-include" ),
-	markdown = require( "markdown" ),
+	marked = require( "marked" ),
 	sass = require( "gulp-sass" ),
 	watch = require( "gulp-watch" );
 
 gulp.task( "default", function() {
+	gulp.watch([ "./src/chapters/*.md", "./src/index.html" ], [ "include" ]);
 	gulp.watch( "./scss/*.scss", [ "sass" ] );
 	gulp.watch( "./scripts/*.js", [ "scripts" ] );
 });
@@ -15,7 +16,7 @@ gulp.task( "include", function() {
 		.pipe( fileInclude({
 			prefix: "@@",
 			filters: {
-				markdown: markdown.parse
+				markdown: marked
 			}
 		}))
 		.pipe( gulp.dest( "./" ) );

@@ -1,11 +1,10 @@
-<div class="chapter">
-	<hr>
+## Folder structure
 
-	<h2>Folder structure</h2>
-	<p>The most contentious religious debates in the software world occur when deciding on naming conventions, so to set the tone of this <i>opinionated</i> guide, folder structure seems like a good place to start.</p>
+The most contentious religious debates in the software world occur when deciding on naming conventions, so to set the tone of this *opinionated* guide, folder structure seems like a good place to start.
 
-	<h3>Folder structure overview</h3>
-	<p>Here is our recommended folder structure:</p>
+### Folder structure overview
+
+Here is our recommended folder structure:
 
 <pre><code class="language-shell">.
 ├── app
@@ -32,15 +31,16 @@
 │   └── view-models
 │   │   └── ...
 └── platforms
-    ├── android
-    └── ios
+├── android
+└── ios
 </code></pre>
 
-	<p>The following sections provide more specific advice based on this structure.</p>
+The following sections provide more specific advice based on this structure.
 
-	<h3>Exclude the <code>platforms</code> folder from source control</h3>
-	<p>The <code>platforms</code> folder contains NativeScript-generated code for each platform your app runs on. Because this code is generated it doesn't belong in source control. If you're a git user you can exclude this folder by adding <code>platforms/</code> to your <code>.gitignore</code>.</p>
+### Exclude the `platforms` folder from source control
 
-	<h3>Exclude the <code>node_modules</code> folder from source control</h3>
-	<p>The <code>node_modules</code> folder can be generated from your package.json, so it should also should be excluded from source control. If you're a git user you can exclude the folder by adding <code>node_modules/</code> to your <code>.gitignore</code>.</p>
-</div>
+The `platforms` folder contains NativeScript-generated code for each platform your app runs on. Because this code is generated it doesn't belong in source control. If you're a git user you can exclude this folder by adding `platforms` to your `.gitignore`.
+
+### Exclude the `node_modules` folder from source control
+
+The `node_modules` folder can be generated from your package.json, so it should also should be excluded from source control. If you're a git user you can exclude the folder by adding `node_modules/` to your `.gitignore`.
