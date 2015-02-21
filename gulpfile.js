@@ -5,11 +5,11 @@ var gulp = require( "gulp" ),
 	sass = require( "gulp-sass" ),
 	watch = require( "gulp-watch" );
 
-gulp.task( "default", function() {
-	gulp.watch([ "./src/chapters/*.md", "./src/index.html" ], [ "include" ]);
-	gulp.watch( "./scss/*.scss", [ "sass" ] );
-	gulp.watch( "./scripts/*.js", [ "scripts" ] );
+gulp.task( "default", [ "build" ], function() {
+	gulp.watch( "./src/**/*", [ "build" ]);
 });
+
+gulp.task( "build", [ "include", "sass", "scripts" ]);
 
 gulp.task( "include", function() {
 	gulp.src( "./src/index.html" )
