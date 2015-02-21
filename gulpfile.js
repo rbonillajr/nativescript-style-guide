@@ -3,16 +3,26 @@ var gulp = require( "gulp" ),
 	fileInclude = require( "gulp-file-include" ),
 	marked = require( "marked" ),
 	sass = require( "gulp-sass" ),
-	watch = require( "gulp-watch" );
+	watch = require( "gulp-watch" ),
+	webServer = require( "gulp-webserver" );
 
-gulp.task( "default", [ "build" ], function() {
+gulp.task( "default", [ "build", "server" ], function() {
 	gulp.watch( "./src/**/*", [ "build" ]);
 });
 
 gulp.task( "build", [ "include", "sass", "scripts" ]);
 
+gulp.task( "server", function() {
+	return gulp.src( "./" )
+		.pipe(webServer({
+			livereload: true,
+			port: "3027",
+			open: "http://localhost:3027"
+		}));
+});
+
 gulp.task( "include", function() {
-	gulp.src( "./src/index.html" )
+	return gulp.src( "./src/index.html" )
 		.pipe( fileInclude({
 			prefix: "@@",
 			filters: {
