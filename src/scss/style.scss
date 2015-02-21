@@ -2,6 +2,13 @@
 @import "normalize";
 @import "prism";
 
+html {
+	box-sizing: border-box;
+}
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
 body, html {
 	margin: 0;
 	padding: 0;
@@ -114,11 +121,11 @@ h5 {
 	font-size: 18px;
 	line-height: 1.6em;
 }
-h5 a:link, h5 a:active, h5 a:visited, h6 a:link, h6 a:active, h6 a:visited{
+h5 a:link, h5 a:active, h5 a:visited,
+h6 a:link, h6 a:active, h6 a:visited {
 	color: #364149;
 	text-decoration: none;
-	padding: 0px 0;
-	padding-right: 20px;
+	padding: 0;
 	display: block;
 }
 h5 a:hover, h6 a:hover {
@@ -140,7 +147,7 @@ h5 a:hover, h6 a:hover {
 	border-right: 1px solid #EDEDED;
 }
 #toc-padding {
-	padding: 0px 20px 20px 20px;
+	padding: 0 1em 1em 1em;
 }
 .author {
 	font-size: 0.8em;
@@ -201,9 +208,9 @@ body.no-toc #book {
 #book {
 	letter-spacing: .01rem;
 	line-height: 1.5em;
-	max-width: 800px;
+	max-width: 850px;
 	margin: 0 auto 0 300px;
-	padding: 2em 20px 50px 20px;
+	padding: 2em 2em 50px 2em;
 }
 
 .note {
