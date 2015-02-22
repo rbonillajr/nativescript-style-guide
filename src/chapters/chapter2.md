@@ -6,7 +6,8 @@ The most contentious religious debates in the software world occur when deciding
 
 Here is our recommended folder structure:
 
-<pre><code class="language-shell">.
+``` shell
+.
 ├── app
 │   ├── App_Resources
 │   │   ├── android
@@ -33,7 +34,7 @@ Here is our recommended folder structure:
 └── platforms
 ├── android
 └── ios
-</code></pre>
+```
 
 The following sections provide more specific advice based on this structure.
 

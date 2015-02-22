@@ -12,6 +12,7 @@
 		$( "body" ).addClass( "no-toc" );
 	}
 
+	// Build the TOC
 	var toc = $( "#toc-padding" );
 	$( ".chapter" ).each(function( chapterNumber ) {
 		$( this ).find( "h2" ).each(function() {
@@ -31,6 +32,14 @@
 				$( this ).html() + "</a></h6>" );
 		});
 	});
+
+	$( "code.lang-markup, code.lang-javascript" )
+		.each(function() {
+			var text = $( this ).text();
+			$( this ).text( text.trim() );
+		})
+		.parent( "pre" )
+		.addClass( "line-numbers" );
 
 	$( "#toggle-toc" ).on( "click", function() {
 		$( "body" ).toggleClass( "no-toc" );

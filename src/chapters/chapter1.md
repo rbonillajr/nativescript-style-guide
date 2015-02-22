@@ -8,12 +8,15 @@ NativeScript has a robust MVVM implementation that allows you to bind data in Ja
 
 As an example suppose you want to display a list of characters in a ListView control. Here's an implementation that doesn't use MVVM:
 
-<pre class="line-numbers"><code class="language-markup">&lt;!-- page.xml --&gt;
-&lt;Page navigatedTo="load"&gt;
-&lt;ListView id="characters" /&gt;
-&lt;/Page&gt;</code></pre>
+``` markup
+<!-- page.xml -->
+<Page navigatedTo="load">
+    <ListView id="characters" />
+</Page>
+```
 
-<pre class="line-numbers"><code class="language-javascript">// page.js
+``` javascript
+// page.js
 var labelModule = require( "ui/label" ),
 viewModule = require( "ui/core/view" );
 
@@ -27,7 +30,7 @@ list.on( "itemLoading", function( args ) {
     }
     args.view.text = characters[ args.index ];
 });
-}</code></pre>
+```
 
 This code shows a list of characters as you'd expect, and it even updates the ListView as you add or remove items from the `characters` array.
 
@@ -35,27 +38,31 @@ However, there are a few things about this implementation that aren't so great. 
 
 Here's an example that works the same but uses an MVVM implementation:
 
-<pre class="line-numbers"><code class="language-markup">&lt;-- page.xml --&gt;
-&lt;Page navigatedTo="load"&gt;
-&lt;ListView items="{{ characters }}"&gt;
-    &lt;ListView.itemTemplate&gt;
-        &lt;Label text="{{ name }}" /&gt;
-    &lt;/ListView.itemTemplate&gt;
-&lt;/ListView&gt;
-&lt;/Page&gt;</code></pre>
+``` markup
+<-- page.xml -->
+<Page navigatedTo="load">
+    <ListView items="{{ characters }}">
+        <ListView.itemTemplate>
+            <Label text="{{ name }}" />
+        </ListView.itemTemplate>
+    </ListView>
+</Page>
+```
 
-<pre class="line-numbers"><code class="language-javascript">// page.js
+``` javascript
+// page.js
 var observableModule = require( "data/observable" ),
 observableArray = require( "data/observable-array" ),
 data = new observableModule.Observable();
 
 data.set( "characters", new observableArray.ObservableArray([
-{ name: "Sonic" }, { name: "Tails" }, { name: "Knuckles" }
+    { name: "Sonic" }, { name: "Tails" }, { name: "Knuckles" }
 ]));
 
 exports.load = function( args ) {
-args.object.bindingContext = data;
-}</code></pre>
+    args.object.bindingContext = data;
+}
+```
 
 Here, the JavaScript code now knows nothing about the view's XML. JavaScript creates the data structure, and the XML code binds to the data using the `{{ }}` syntax. The MVVM approach also allows you to move the ListView's item template definition out of JavaScript, and into XML (with the `&lt;ListView.itemTemplate&gt;` element), which is far more readable.
 
@@ -63,40 +70,46 @@ Here, the JavaScript code now knows nothing about the view's XML. JavaScript cre
 
 Like the MVVM pattern, using small modular files makes your code more readable and maintainable. For example, consider the code from the previous example:
 
-<pre class="line-numbers"><code class="language-javascript">// page.js
+``` javascript
+// page.js
 var observableModule = require( "data/observable" ),
 observableArray = require( "data/observable-array" ),
 data = new observableModule.Observable();
 
 data.set( "characters", new observableArray.ObservableArray([
-{ name: "Sonic" }, { name: "Tails" }, { name: "Knuckles" }
+    { name: "Sonic" }, { name: "Tails" }, { name: "Knuckles" }
 ]));
 
 exports.load = function( args ) {
-args.object.bindingContext = data;
-}</code></pre>
+    args.object.bindingContext = data;
+}
+```
 
 This application's model data is mixed in with view code. The disadvantage of this approach being, if you want to reuse this character data on other pages in your app, you're going to need to duplicate code. Let's look at how you can refactor this code to make it more modular.
 
 A good first step is to move the data itself into a separate file:
 
-<pre class="line-numbers"><code class="language-javascript">// characterData.js
+``` javascript
+// characterData.js
 var observableModule = require( "data/observable" ),
 observableArray = require( "data/observable-array" ),
 data = new observableModule.Observable();
 
 data.set( "characters", new observableArray.ObservableArray([
-{ name: "Sonic" }, { name: "Tails" }, { name: "Knuckles" }
+    { name: "Sonic" }, { name: "Tails" }, { name: "Knuckles" }
 ]));
 
-module.exports = data;</code></pre>
+module.exports = data;
+```
 
-<pre class="line-numbers"><code class="language-javascript">// page.js
+``` javascript
+// page.js
 var characterData = require( "./characterData" );
 
 exports.load = function( args ) {
 args.object.bindingContext = characterData;
-}</code></pre>
+}
+```
 
 This change not only cleans up your view's code, but also moves the character data to a more reusable location.
 
@@ -104,32 +117,38 @@ This change not only cleans up your view's code, but also moves the character da
 
 In the example above `characterData.js` acts as a view model, which you can think of as a model object's whose explicit purpose is to interact with a view. As a further enhancement, you may choose to additionally abstract out your model objects into their own files. Here's what that looks like for our character example:
 
-<pre class="line-numbers"><code class="language-javascript">// Character.js
+``` javascript
+// Character.js
 function Character( name ) {
-this.name = name;
+    this.name = name;
 }
-module.exports = Character;</code></pre>
+module.exports = Character;
+```
 
-<pre class="line-numbers"><code class="language-javascript">// characterData.js
+``` javascript
+// characterData.js
 var observableModule = require( "data/observable" ),
 observableArray = require( "data/observable-array" ),
 Character = require( "./Character" ),
 data = new observableModule.Observable();
 
 data.set( "characters", new observableArray.ObservableArray([
-new Character( "Sonic" ),
-new Character( "Tails" ),
-new Character( "Knuckles" )
+    new Character( "Sonic" ),
+    new Character( "Tails" ),
+    new Character( "Knuckles" )
 ]));
 
-module.exports = data;</code></pre>
+module.exports = data;
+```
 
-<pre class="line-numbers"><code class="language-javascript">// page.js
+``` javascript
+// page.js
 var characterData = require( "./characterData" );
 
 exports.load = function( args ) {
-args.object.bindingContext = characterData;
-}</code></pre>
+    args.object.bindingContext = characterData;
+}
+```
 
 Here, you use a `Character.js` file to contain your character model data, which your view model (`characterData.js`) uses. The advantage again is in the reusability that this approach offers. Any character-specific code can go in `Character.js`, and any file in your app that needs that functionality can use it without worrying about dependencies.
 

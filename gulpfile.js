@@ -39,7 +39,7 @@ gulp.task( "sass", function () {
 });
 
 gulp.task( "scripts", function() {
-	return gulp.src([ "src/scripts/fastclick.js", "src/scripts/jquery.js", "src/scripts/prism.js", "src/scripts/app.js" ])
+	return gulp.src([ "src/scripts/fastclick.js", "src/scripts/jquery.js", "src/scripts/app.js", "src/scripts/prism.js" ])
 		.pipe( concat( "built.js" ) )
 		.pipe( gulp.dest( "./scripts/" ) );
 });
