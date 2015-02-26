@@ -173,42 +173,73 @@ exports.load = function( args ) {
 		<hr>
 		<div class="chapter">
 			<h2 id="folder-structure">Folder structure</h2>
-<p>The most contentious religious debates in the software world occur when deciding on naming conventions, so to set the tone of this <em>opinionated</em> guide, folder structure seems like a good place to start.</p>
+<p>The most contentious religious debates in the software world occur when deciding on naming conventions. Here are the folder and file names that have worked for us.</p>
 <h3 id="folder-structure-overview">Folder structure overview</h3>
 <p>Here is our recommended folder structure:</p>
 <pre><code class="lang-shell">.
 ├── app
+│   ├── app
+│   │   ├── app.css
+│   │   ├── app.js
+│   │   ├── images
+│   │   │   └── ...
+│   │   ├── lib
+│   │   │   └── ...
+│   │   ├── shared
+│   │   │   ├── css
+│   │   │   │   └── ...
+│   │   │   ├── models
+│   │   │   │   └── ...
+│   │   │   ├── utils
+│   │   │   │   ├── images.js
+│   │   │   │   └── ...
+│   │   │   └── ...
+│   │   ├── views
+│   │   │   └── ...
+│   │   └── ...
 │   ├── App_Resources
 │   │   ├── android
 │   │   └── ios
-│   ├── app.css
-│   ├── app.js
-│   ├── css
-│   │   └── ...
-│   ├── lib
-│   │   └── ...
-│   ├── models
-│   │   └── ...
-│   ├── node_modules
-│   │   └── ...
-│   ├── package.json
-│   ├── tns_modules
-│   │   └── ...
-│   └── utilities
-│   │   └── ...
-│   └── views
-│   │   └── ...
-│   └── view-models
-│   │   └── ...
+│   └── tns_modules
+│       └── ...
 └── platforms
-├── android
-└── ios
+    └── ...
 </code></pre>
 <p>The following sections provide more specific advice based on this structure.</p>
 <h3 id="exclude-the-platforms-folder-from-source-control">Exclude the <code>platforms</code> folder from source control</h3>
 <p>The <code>platforms</code> folder contains NativeScript-generated code for each platform your app runs on. Because this code is generated it doesn&#39;t belong in source control. If you&#39;re a git user you can exclude this folder by adding <code>platforms</code> to your <code>.gitignore</code>.</p>
 <h3 id="exclude-the-node_modules-folder-from-source-control">Exclude the <code>node_modules</code> folder from source control</h3>
 <p>The <code>node_modules</code> folder can be generated from your package.json, so it should also should be excluded from source control. If you&#39;re a git user you can exclude the folder by adding <code>node_modules/</code> to your <code>.gitignore</code>.</p>
+<h3 id="create-an-images-js-helper-file">Create an <code>images.js</code> helper file</h3>
+<p>To avoid duplicating image paths it&#39;s helpful to have a single <code>images.js</code> utility file that contains all image paths that your app needs. As an example, given the folder structure shown above, suppose the <code>images</code> folder contains a <code>logo.png</code> file.</p>
+<pre><code class="lang-shell">.
+└── app
+    └── app
+        ├── app.css
+        ├── app.js
+        └── images
+            └── logo.png
+</code></pre>
+<p>You can then write the following <code>images.js</code> utility that grabs this image&#39;s source:</p>
+<pre><code class="lang-javascript">var imageSource = require( &quot;image-source&quot; );
+
+module.exports = {
+    logo: imageSource.fromFile( &quot;~/app/images/logo.png&quot; )
+};
+</code></pre>
+<p>With this utility in place you can use <code>images.js</code> in your views:</p>
+<pre><code class="lang-javascript">var images = require( &quot;../shared/utils/images&quot; );
+
+exports.load = function( args ) {
+    var page = args.object;
+    page.bindingContext = { logoSource: images.logo };
+}
+</code></pre>
+<p>And uses it in your XML:</p>
+<pre><code class="lang-markup">&lt;Page loaded=&quot;load&quot;&gt;
+    &lt;Image source=&quot;{{ logoSource }}&quot; /&gt;
+&lt;/Page&gt;
+</code></pre>
 
 		</div>
 	</div>
