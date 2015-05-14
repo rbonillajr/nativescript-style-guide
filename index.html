@@ -30,17 +30,28 @@
 <h3 id="what-is-this-">What is this?</h3>
 <p>This is an opinionated guide to building native mobile apps with <a href="http://nativescript.org">NativeScript</a>. The advice this guide prescribes is by no means mandatory, however, the very opinionated authors of this guide believe that following these guidelines will help you produce high-quality, maintenance friendly, and performant apps with NativeScript.</p>
 <p>Feel free to ignore tips that don&#39;t apply to your projects, or to build upon this advice based on your app&#39;s requirements. If you find an error in this guide, or would like to suggest new guidelines, feel free to <a href="https://github.com/NativeScript/nativescript-style-guide/issues/new">open an issue</a> in <a href="https://github.com/NativeScript/nativescript-style-guide">this guide&#39;s GitHub repo</a>.</p>
+<h3 id="why-use-nativescript-">Why use NativeScript?</h3>
+<p>NativeScript provides the ability to build completely native iOS and Android apps using standards-based JavaScript. As such, NativeScript is a great fit for anyone with a JavaScript skill set that wants or needs to build native mobile applications.</p>
+<p>NativeScript allows you to reuse JavaScript skills you already know. For example this guide will show you how to use npm modules in your app, how to lint your code with <a href="http://jshint.com/">JSHint</a> and <a href="http://jscs.info/">JSCS</a>, and how to write modules that adhere to the <a href="http://en.wikipedia.org/wiki/CommonJS">CommonJS spec</a>.</p>
+<p>But perhaps NativeScript&#39;s characterizing feature is the direct access it gives you to native iOS and Android APIs. This access makes it trivial to make iOS- and Android-specific customizations to your apps, and to build NativeScript modules that abstract away the platform-specific implementations. This guide will cover both.</p>
 <h3 id="who-wrote-this-">Who wrote this?</h3>
 <p>The following people have contributed to this guide in some fashion—aka, if you disagree with the advice this guide presents, here are some people you can yell at:</p>
 <ul>
 <li>TJ VanToll | <a href="http://twitter.com/tjvantoll">@tjvantoll</a></li>
-<li>Valio Stoychev | <a href="https://twitter.com/valiostoychev">@valiostoychev</a></li>
-<li>Sebastian Witalec | <a href="https://twitter.com/sebawita">@sebawita</a></li>
-<li>Clark Sell | <a href="https://twitter.com/csell5">@csell5</a></li>
 </ul>
 <h3 id="prerequisites">Prerequisites</h3>
-<p>This guides assumes you know how to create and run a NativeScript project. If you don&#39;t, start on the <a href="https://github.com/nativescript/nativescript-cli">NativeScript getting started page</a>, and come back here when you&#39;ve got the NativeScript basics down and are looking to create a real app.</p>
-
+<p>This guides assumes you know how to create and run a NativeScript project. If you don&#39;t, start on the <a href="http://docs.nativescript.org/getting-started">NativeScript getting started page</a>, and come back here when you&#39;ve got the NativeScript basics down and are looking to create a real app.</p>
+<h3 id="justmeme-application">JustMeme application</h3>
+<p>This guide&#39;s example are given in the context of an application called “JustMeme”. JustMeme is a NativeScript-built iOS and Android application for building memes and sharing them with your friends and family. JustMeme&#39;s source code is available on GitHub, and you can also download the app from the iOS app store.</p>
+<ul>
+<li><a href="https://github.com/NativeScript/JustMeme">View JustMeme on GitHub</a></li>
+<li><a href="https://itunes.apple.com/us/app/justmeme/id989340374?mt=8">Download JustMeme from the iOS App Store</a></li>
+</ul>
+<div class="image-container">
+<img src="images/justmeme-1.png" alt="">
+<img src="images/justmeme-2.png" alt="">
+<img src="images/justmeme-3.png" alt="">
+</div>
 		</div>
 		<hr>
 		<div class="chapter">
@@ -240,6 +251,14 @@ exports.load = function( args ) {
     &lt;Image source=&quot;{{ logoSource }}&quot; /&gt;
 &lt;/Page&gt;
 </code></pre>
+
+		</div>
+		<hr>
+		<div class="chapter">
+			<h2 id="building-nativescript-modules">Building NativeScript Modules</h2>
+<p>foo bar</p>
+<h3 id="foo-bar">foo bar</h3>
+<p>foo bar</p>
 
 		</div>
 	</div>

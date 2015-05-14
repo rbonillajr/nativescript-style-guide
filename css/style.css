@@ -686,6 +686,12 @@ body.no-toc #book {
   padding-left: 10px;
   background-color: #FAFAFA; }
 
+.image-container {
+  overflow: hidden; }
+  .image-container img {
+    float: left;
+    width: 30%; }
+
 @media (max-width: 700px) {
   #container {
     display: block; }
