@@ -66,18 +66,18 @@
 &lt;/Page&gt;
 </code></pre>
 <pre><code class="lang-javascript">// page.js
-var labelModule = require( &quot;ui/label&quot; ),
-viewModule = require( &quot;ui/core/view&quot; );
+var labelModule = require(&quot;ui/label&quot;);
+var viewModule = require(&quot;ui/core/view&quot;);
 
-var characters = [ &quot;Sonic&quot;, &quot;Tails&quot;, &quot;Knuckles&quot; ];
-exports.load = function( args ) {
-var list = viewModule.getViewById( args.object, &quot;characters&quot; );
+var characters = [&quot;Sonic&quot;, &quot;Tails&quot;, &quot;Knuckles&quot;];
+exports.load = function(args) {
+var list = viewModule.getViewById(args.object, &quot;characters&quot;);
 list.items = characters;
-list.on( &quot;itemLoading&quot;, function( args ) {
-    if ( !args.view ) {
+list.on(&quot;itemLoading&quot;, function(args) {
+    if (!args.view) {
         args.view = new labelModule.Label();
     }
-    args.view.text = characters[ args.index ];
+    args.view.text = characters[args.index];
 });
 </code></pre>
 <p>This code shows a list of characters as you&#39;d expect, and it even updates the ListView as you add or remove items from the <code>characters</code> array.</p>
@@ -93,52 +93,58 @@ list.on( &quot;itemLoading&quot;, function( args ) {
 &lt;/Page&gt;
 </code></pre>
 <pre><code class="lang-javascript">// page.js
-var observableModule = require( &quot;data/observable&quot; ),
-observableArray = require( &quot;data/observable-array&quot; ),
-data = new observableModule.Observable();
+var observableModule = require(&quot;data/observable&quot;);
+var observableArray = require(&quot;data/observable-array&quot;);
+var data = new observableModule.Observable();
 
-data.set( &quot;characters&quot;, new observableArray.ObservableArray([
-    { name: &quot;Sonic&quot; }, { name: &quot;Tails&quot; }, { name: &quot;Knuckles&quot; }
+data.set(&quot;characters&quot;, new observableArray.ObservableArray([
+    { name: &quot;Sonic&quot; },
+    { name: &quot;Tails&quot; },
+    { name: &quot;Knuckles&quot; }
 ]));
 
-exports.load = function( args ) {
+exports.load = function(args) {
     args.object.bindingContext = data;
 }
 </code></pre>
-<p>Here, the JavaScript code now knows nothing about the view&#39;s XML. JavaScript creates the data structure, and the XML code binds to the data using the <code>{{ }}</code> syntax. The MVVM approach also allows you to move the ListView&#39;s item template definition out of JavaScript, and into XML (with the <code>&amp;lt;ListView.itemTemplate&amp;gt;</code> element), which is far more readable.</p>
+<p>Here, the JavaScript code now knows nothing about the view&#39;s XML. JavaScript creates the data structure, and the XML code binds to the data using the <code>{{ }}</code> syntax. The MVVM approach also allows you to move the ListView&#39;s item template definition out of JavaScript, and into XML (with the <code>&lt;ListView.itemTemplate&gt;</code> element), which is far more readable.</p>
 <h3 id="divide-your-code-into-small-modular-files">Divide your code into small modular files</h3>
 <p>Like the MVVM pattern, using small modular files makes your code more readable and maintainable. For example, consider the code from the previous example:</p>
 <pre><code class="lang-javascript">// page.js
-var observableModule = require( &quot;data/observable&quot; ),
-observableArray = require( &quot;data/observable-array&quot; ),
+var observableModule = require(&quot;data/observable&quot;),
+observableArray = require(&quot;data/observable-array&quot;),
 data = new observableModule.Observable();
 
-data.set( &quot;characters&quot;, new observableArray.ObservableArray([
-    { name: &quot;Sonic&quot; }, { name: &quot;Tails&quot; }, { name: &quot;Knuckles&quot; }
+data.set(&quot;characters&quot;, new observableArray.ObservableArray([
+    { name: &quot;Sonic&quot; },
+    { name: &quot;Tails&quot; },
+    { name: &quot;Knuckles&quot; }
 ]));
 
-exports.load = function( args ) {
+exports.load = function(args) {
     args.object.bindingContext = data;
 }
 </code></pre>
 <p>This application&#39;s model data is mixed in with view code. The disadvantage of this approach being, if you want to reuse this character data on other pages in your app, you&#39;re going to need to duplicate code. Let&#39;s look at how you can refactor this code to make it more modular.</p>
 <p>A good first step is to move the data itself into a separate file:</p>
 <pre><code class="lang-javascript">// characterData.js
-var observableModule = require( &quot;data/observable&quot; ),
-observableArray = require( &quot;data/observable-array&quot; ),
-data = new observableModule.Observable();
+var observableModule = require(&quot;data/observable&quot;);
+var observableArray = require( &quot;data/observable-array&quot;);
+var data = new observableModule.Observable();
 
 data.set( &quot;characters&quot;, new observableArray.ObservableArray([
-    { name: &quot;Sonic&quot; }, { name: &quot;Tails&quot; }, { name: &quot;Knuckles&quot; }
+    { name: &quot;Sonic&quot; },
+    { name: &quot;Tails&quot; },
+    { name: &quot;Knuckles&quot; }
 ]));
 
 module.exports = data;
 </code></pre>
 <pre><code class="lang-javascript">// page.js
-var characterData = require( &quot;./characterData&quot; );
+var characterData = require(&quot;./characterData&quot;);
 
-exports.load = function( args ) {
-args.object.bindingContext = characterData;
+exports.load = function(args) {
+    args.object.bindingContext = characterData;
 }
 </code></pre>
 <p>This change not only cleans up your view&#39;s code, but also moves the character data to a more reusable location.</p>
@@ -147,29 +153,29 @@ args.object.bindingContext = characterData;
 </blockquote>
 <p>In the example above <code>characterData.js</code> acts as a view model, which you can think of as a model object&#39;s whose explicit purpose is to interact with a view. As a further enhancement, you may choose to additionally abstract out your model objects into their own files. Here&#39;s what that looks like for our character example:</p>
 <pre><code class="lang-javascript">// Character.js
-function Character( name ) {
+function Character(name) {
     this.name = name;
 }
 module.exports = Character;
 </code></pre>
 <pre><code class="lang-javascript">// characterData.js
-var observableModule = require( &quot;data/observable&quot; ),
-observableArray = require( &quot;data/observable-array&quot; ),
-Character = require( &quot;./Character&quot; ),
-data = new observableModule.Observable();
+var observableModule = require(&quot;data/observable&quot;);
+var observableArray = require(&quot;data/observable-array&quot;);
+var Character = require(&quot;./Character&quot;);
+var data = new observableModule.Observable();
 
-data.set( &quot;characters&quot;, new observableArray.ObservableArray([
-    new Character( &quot;Sonic&quot; ),
-    new Character( &quot;Tails&quot; ),
-    new Character( &quot;Knuckles&quot; )
+data.set(&quot;characters&quot;, new observableArray.ObservableArray([
+    new Character(&quot;Sonic&quot;),
+    new Character(&quot;Tails&quot;),
+    new Character(&quot;Knuckles&quot;)
 ]));
 
 module.exports = data;
 </code></pre>
 <pre><code class="lang-javascript">// page.js
-var characterData = require( &quot;./characterData&quot; );
+var characterData = require(&quot;./characterData&quot;);
 
-exports.load = function( args ) {
+exports.load = function(args) {
     args.object.bindingContext = characterData;
 }
 </code></pre>

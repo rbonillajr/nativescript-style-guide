@@ -17,18 +17,18 @@ As an example suppose you want to display a list of characters in a ListView con
 
 ``` javascript
 // page.js
-var labelModule = require( "ui/label" ),
-viewModule = require( "ui/core/view" );
+var labelModule = require("ui/label");
+var viewModule = require("ui/core/view");
 
-var characters = [ "Sonic", "Tails", "Knuckles" ];
-exports.load = function( args ) {
-var list = viewModule.getViewById( args.object, "characters" );
+var characters = ["Sonic", "Tails", "Knuckles"];
+exports.load = function(args) {
+var list = viewModule.getViewById(args.object, "characters");
 list.items = characters;
-list.on( "itemLoading", function( args ) {
-    if ( !args.view ) {
+list.on("itemLoading", function(args) {
+    if (!args.view) {
         args.view = new labelModule.Label();
     }
-    args.view.text = characters[ args.index ];
+    args.view.text = characters[args.index];
 });
 ```
 
@@ -51,20 +51,22 @@ Here's an example that works the same but uses an MVVM implementation:
 
 ``` javascript
 // page.js
-var observableModule = require( "data/observable" ),
-observableArray = require( "data/observable-array" ),
-data = new observableModule.Observable();
+var observableModule = require("data/observable");
+var observableArray = require("data/observable-array");
+var data = new observableModule.Observable();
 
-data.set( "characters", new observableArray.ObservableArray([
-    { name: "Sonic" }, { name: "Tails" }, { name: "Knuckles" }
+data.set("characters", new observableArray.ObservableArray([
+    { name: "Sonic" },
+    { name: "Tails" },
+    { name: "Knuckles" }
 ]));
 
-exports.load = function( args ) {
+exports.load = function(args) {
     args.object.bindingContext = data;
 }
 ```
 
-Here, the JavaScript code now knows nothing about the view's XML. JavaScript creates the data structure, and the XML code binds to the data using the `{{ }}` syntax. The MVVM approach also allows you to move the ListView's item template definition out of JavaScript, and into XML (with the `&lt;ListView.itemTemplate&gt;` element), which is far more readable.
+Here, the JavaScript code now knows nothing about the view's XML. JavaScript creates the data structure, and the XML code binds to the data using the `{{ }}` syntax. The MVVM approach also allows you to move the ListView's item template definition out of JavaScript, and into XML (with the `<ListView.itemTemplate>` element), which is far more readable.
 
 ### Divide your code into small modular files
 
@@ -72,15 +74,17 @@ Like the MVVM pattern, using small modular files makes your code more readable a
 
 ``` javascript
 // page.js
-var observableModule = require( "data/observable" ),
-observableArray = require( "data/observable-array" ),
+var observableModule = require("data/observable"),
+observableArray = require("data/observable-array"),
 data = new observableModule.Observable();
 
-data.set( "characters", new observableArray.ObservableArray([
-    { name: "Sonic" }, { name: "Tails" }, { name: "Knuckles" }
+data.set("characters", new observableArray.ObservableArray([
+    { name: "Sonic" },
+    { name: "Tails" },
+    { name: "Knuckles" }
 ]));
 
-exports.load = function( args ) {
+exports.load = function(args) {
     args.object.bindingContext = data;
 }
 ```
@@ -91,12 +95,14 @@ A good first step is to move the data itself into a separate file:
 
 ``` javascript
 // characterData.js
-var observableModule = require( "data/observable" ),
-observableArray = require( "data/observable-array" ),
-data = new observableModule.Observable();
+var observableModule = require("data/observable");
+var observableArray = require( "data/observable-array");
+var data = new observableModule.Observable();
 
 data.set( "characters", new observableArray.ObservableArray([
-    { name: "Sonic" }, { name: "Tails" }, { name: "Knuckles" }
+    { name: "Sonic" },
+    { name: "Tails" },
+    { name: "Knuckles" }
 ]));
 
 module.exports = data;
@@ -104,10 +110,10 @@ module.exports = data;
 
 ``` javascript
 // page.js
-var characterData = require( "./characterData" );
+var characterData = require("./characterData");
 
-exports.load = function( args ) {
-args.object.bindingContext = characterData;
+exports.load = function(args) {
+    args.object.bindingContext = characterData;
 }
 ```
 
@@ -119,7 +125,7 @@ In the example above `characterData.js` acts as a view model, which you can thin
 
 ``` javascript
 // Character.js
-function Character( name ) {
+function Character(name) {
     this.name = name;
 }
 module.exports = Character;
@@ -127,15 +133,15 @@ module.exports = Character;
 
 ``` javascript
 // characterData.js
-var observableModule = require( "data/observable" ),
-observableArray = require( "data/observable-array" ),
-Character = require( "./Character" ),
-data = new observableModule.Observable();
+var observableModule = require("data/observable");
+var observableArray = require("data/observable-array");
+var Character = require("./Character");
+var data = new observableModule.Observable();
 
-data.set( "characters", new observableArray.ObservableArray([
-    new Character( "Sonic" ),
-    new Character( "Tails" ),
-    new Character( "Knuckles" )
+data.set("characters", new observableArray.ObservableArray([
+    new Character("Sonic"),
+    new Character("Tails"),
+    new Character("Knuckles")
 ]));
 
 module.exports = data;
@@ -143,9 +149,9 @@ module.exports = data;
 
 ``` javascript
 // page.js
-var characterData = require( "./characterData" );
+var characterData = require("./characterData");
 
-exports.load = function( args ) {
+exports.load = function(args) {
     args.object.bindingContext = characterData;
 }
 ```
