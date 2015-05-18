@@ -59,138 +59,98 @@
 <p>The following are a set of best practices to adhere to when building NativeScript apps.</p>
 <h3 id="use-nativescript-s-mvvm-implementation">Use NativeScript&#39;s MVVM implementation</h3>
 <p>NativeScript has a robust MVVM implementation that allows you to bind data in JavaScript objects to native UI elements; use it, as it&#39;ll make your code a lot cleaner.</p>
-<p>As an example suppose you want to display a list of characters in a ListView control. Here&#39;s an implementation that doesn&#39;t use MVVM:</p>
-<pre><code class="lang-markup">&lt;!-- page.xml --&gt;
-&lt;Page navigatedTo=&quot;load&quot;&gt;
-    &lt;ListView id=&quot;characters&quot; /&gt;
-&lt;/Page&gt;
-</code></pre>
-<pre><code class="lang-javascript">// page.js
-var labelModule = require(&quot;ui/label&quot;);
-var viewModule = require(&quot;ui/core/view&quot;);
+<p>As an example of this MVVM approach in use let&#39;s refer to the create meme page in JustMeme. Here&#39;s a gif that shows the page in action:</p>
+<p><img src="images/create-meme.gif" style="height: 450px; float: left; margin: 1em;"></p>
+<p>And here&#39;s a simplified snippet of the XML that builds this UI:</p>
+<pre><code class="lang-markup">&lt;Image imageSource=&quot;{{ memeImage }}&quot; /&gt;
 
-var characters = [&quot;Sonic&quot;, &quot;Tails&quot;, &quot;Knuckles&quot;];
-exports.load = function(args) {
-var list = viewModule.getViewById(args.object, &quot;characters&quot;);
-list.items = characters;
-list.on(&quot;itemLoading&quot;, function(args) {
-    if (!args.view) {
-        args.view = new labelModule.Label();
-    }
-    args.view.text = characters[args.index];
+&lt;TextField hint=&quot;Top text&quot; text=&quot;{{ topText }}&quot; /&gt;
+&lt;TextField hint=&quot;Bottom text&quot; text=&quot;{{ bottomText }}&quot; /&gt;
+
+&lt;Label text=&quot;Text Size&quot; /&gt;
+&lt;Slider minValue=&quot;10&quot; maxValue=&quot;100&quot; value=&quot;{{ fontSize }}&quot; /&gt;
+
+&lt;Label text=&quot;Black Text&quot; /&gt;
+&lt;Switch checked=&quot;{{ isBlackText }}&quot; /&gt;
+</code></pre>
+<p>The crux of this page&#39;s implementation is responding to user actions. As soon as the user types some text, or adjusts the slider, or toggles the switch, you have to update the image the user sees. The hardest implementation detail here is actually detecting when those changes occur—that is, how do you know when the user types in the TextField, or slides the slider?</p>
+<p>Because JustMeme uses NativeScript&#39;s observables and MVVM implementation, however, the implementation is actually quite easy.</p>
+<pre><code class="lang-javascript">var observable = require(&quot;data/observable&quot;);
+var imageManipulation = require(&quot;../../shared/image-manipulation/image-manipulation&quot;);
+
+// The Meme object&#39;s constructor
+function Meme() {
+    var that = this;
+
+    // Listen for all property changes and call draw
+    this.addEventListener(observable.Observable.propertyChangeEvent, function() {
+        that.draw();
+    });
+};
+
+// Have the Meme object extend the NativeScript Observable object
+Meme.prototype = new observable.Observable();
+
+Meme.prototype.draw = function() {
+    // The code that actually draws text on the image
+    var image = imageManipulation.addText({
+        image: this.image,
+        topText: this.topText,
+        bottomText: this.bottomText,
+        fontSize: this.fontSize,
+        isBlackText: this.isBlackText
+    });
+    this.set(&quot;image&quot;, image);
+};
+</code></pre>
+<p>Don&#39;t worry too much about the details of what this code is doing. The key thing to notice is how this code interacts with the UI, or more specifically, that it doesn&#39;t. Notice how there&#39;s no need to reference individual UI elements, or to listen for text box changes or switch toggles. Instead this code just listens for property changes:</p>
+<pre><code class="lang-javascript">this.addEventListener(observable.Observable.propertyChangeEvent, function() {
+    that.draw();
 });
 </code></pre>
-<p>This code shows a list of characters as you&#39;d expect, and it even updates the ListView as you add or remove items from the <code>characters</code> array.</p>
-<p>However, there are a few things about this implementation that aren&#39;t so great. First your JavaScript has to know specific things about your view, for instance the <code>&quot;characters&quot;</code> id attribute of the ListView. Second, your JavaScript is responsible for generating the UI for each item in ListView. This violates the <a href="http://en.wikipedia.org/wiki/Separation_of_concerns">separation of concerns</a> design principle, and it&#39;s just ugly—no one wants to type <code>new labelModule.Label()</code>.</p>
-<p>Here&#39;s an example that works the same but uses an MVVM implementation:</p>
-<pre><code class="lang-markup">&lt;-- page.xml --&gt;
-&lt;Page navigatedTo=&quot;load&quot;&gt;
-    &lt;ListView items=&quot;{{ characters }}&quot;&gt;
-        &lt;ListView.itemTemplate&gt;
-            &lt;Label text=&quot;{{ name }}&quot; /&gt;
-        &lt;/ListView.itemTemplate&gt;
-    &lt;/ListView&gt;
-&lt;/Page&gt;
-</code></pre>
-<pre><code class="lang-javascript">// page.js
-var observableModule = require(&quot;data/observable&quot;);
-var observableArray = require(&quot;data/observable-array&quot;);
-var data = new observableModule.Observable();
-
-data.set(&quot;characters&quot;, new observableArray.ObservableArray([
-    { name: &quot;Sonic&quot; },
-    { name: &quot;Tails&quot; },
-    { name: &quot;Knuckles&quot; }
-]));
-
-exports.load = function(args) {
-    args.object.bindingContext = data;
-}
-</code></pre>
-<p>Here, the JavaScript code now knows nothing about the view&#39;s XML. JavaScript creates the data structure, and the XML code binds to the data using the <code>{{ }}</code> syntax. The MVVM approach also allows you to move the ListView&#39;s item template definition out of JavaScript, and into XML (with the <code>&lt;ListView.itemTemplate&gt;</code> element), which is far more readable.</p>
-<h3 id="divide-your-code-into-small-modular-files">Divide your code into small modular files</h3>
-<p>Like the MVVM pattern, using small modular files makes your code more readable and maintainable. For example, consider the code from the previous example:</p>
-<pre><code class="lang-javascript">// page.js
-var observableModule = require(&quot;data/observable&quot;),
-observableArray = require(&quot;data/observable-array&quot;),
-data = new observableModule.Observable();
-
-data.set(&quot;characters&quot;, new observableArray.ObservableArray([
-    { name: &quot;Sonic&quot; },
-    { name: &quot;Tails&quot; },
-    { name: &quot;Knuckles&quot; }
-]));
-
-exports.load = function(args) {
-    args.object.bindingContext = data;
-}
-</code></pre>
-<p>This application&#39;s model data is mixed in with view code. The disadvantage of this approach being, if you want to reuse this character data on other pages in your app, you&#39;re going to need to duplicate code. Let&#39;s look at how you can refactor this code to make it more modular.</p>
-<p>A good first step is to move the data itself into a separate file:</p>
-<pre><code class="lang-javascript">// characterData.js
-var observableModule = require(&quot;data/observable&quot;);
-var observableArray = require( &quot;data/observable-array&quot;);
-var data = new observableModule.Observable();
-
-data.set( &quot;characters&quot;, new observableArray.ObservableArray([
-    { name: &quot;Sonic&quot; },
-    { name: &quot;Tails&quot; },
-    { name: &quot;Knuckles&quot; }
-]));
-
-module.exports = data;
-</code></pre>
-<pre><code class="lang-javascript">// page.js
-var characterData = require(&quot;./characterData&quot;);
-
-exports.load = function(args) {
-    args.object.bindingContext = characterData;
-}
-</code></pre>
-<p>This change not only cleans up your view&#39;s code, but also moves the character data to a more reusable location.</p>
-<blockquote>
-<p>These examples assume that all files are in the same folder. In a more realistic example you should have a more complex structure to organize your files. Project folder structure is the topic of <a href="#chapter2">Chapter 2</a>.</p>
-</blockquote>
-<p>In the example above <code>characterData.js</code> acts as a view model, which you can think of as a model object&#39;s whose explicit purpose is to interact with a view. As a further enhancement, you may choose to additionally abstract out your model objects into their own files. Here&#39;s what that looks like for our character example:</p>
-<pre><code class="lang-javascript">// Character.js
-function Character(name) {
-    this.name = name;
-}
-module.exports = Character;
-</code></pre>
-<pre><code class="lang-javascript">// characterData.js
-var observableModule = require(&quot;data/observable&quot;);
-var observableArray = require(&quot;data/observable-array&quot;);
-var Character = require(&quot;./Character&quot;);
-var data = new observableModule.Observable();
-
-data.set(&quot;characters&quot;, new observableArray.ObservableArray([
-    new Character(&quot;Sonic&quot;),
-    new Character(&quot;Tails&quot;),
-    new Character(&quot;Knuckles&quot;)
-]));
-
-module.exports = data;
-</code></pre>
-<pre><code class="lang-javascript">// page.js
-var characterData = require(&quot;./characterData&quot;);
-
-exports.load = function(args) {
-    args.object.bindingContext = characterData;
-}
-</code></pre>
-<p>Here, you use a <code>Character.js</code> file to contain your character model data, which your view model (<code>characterData.js</code>) uses. The advantage again is in the reusability that this approach offers. Any character-specific code can go in <code>Character.js</code>, and any file in your app that needs that functionality can use it without worrying about dependencies.</p>
+<p>Every time any property on the meme object bound to the UI changes, NativeScript fires a property change event, and the meme object&#39;s <code>draw()</code> function runs and updates the image.</p>
+<p>Decoupling a UI from its JavaScript logic is the key principal of the MVVM architecture, and it makes all sorts of things possible. For instance you can easily change things in the UI without worrying about breaking the backing JavaScript code. Because the Meme object is not coupled to any specific UI it&#39;s also reusable. You&#39;ll find the Meme object used in several different places throughout JustMeme.</p>
 <h3 id="use-npm-modules-to-solve-problems">Use npm modules to solve problems</h3>
 <p><a href="https://www.npmjs.com/">npm</a> has over 100,000 modules. If you have a problem there&#39;s a decent chance that someone has already written a module to solve that problem for you. Not every npm module is going to work with NativeScript, for example modules that depend on the DOM (e.g. Kendo UI), but a whole lot of them will. Let&#39;s look at a few that do.</p>
-<p>Suppose you want to sort the array of characters from our previous example into alphabetical order.</p>
-<h3 id="embrace-the-platform">Embrace the platform</h3>
-<p>???</p>
+<p>Remember the create meme page from before? If not I&#39;ve included a gif of it again below as a reminder.</p>
+<p><img src="images/create-meme.gif" style="height: 250px; float: left; margin: 1em;"></p>
+<p>When we were originally developing this app we had a problem with this page, specifically with the Text Size slider. We redraw the image on each property change, and if the user takes the slider and goes nuts with it, NativeScript is going to generate a ton of events.</p>
+<p>Which is fine, except drawing an image dozens of times a second is not exactly the most advisable thing to do from a performance perspective. Some high-end devices were up for the challenge, but our low-end Android devices never stood a chance. What we needed was to add some basic rate limiting. We could&#39;ve rolled our own, but that would be silly because <a href="http://underscorejs.org/">underscore</a> and <a href="https://lodash.com/">lodash</a> already have really good implementations. If you look at the Meme object you&#39;ll now see the following code:</p>
+<pre><code class="lang-javascript">var _ = require(&quot;../../node_modules/lodash/index&quot;);
+
+function Meme() {
+    var that = this;
+    var debouncedRefresh = _.debounce(function() {
+        that.refresh();
+    }, 50, { leading: true });
+    this.addEventListener(observable.Observable.propertyChangeEvent, function() {
+        debouncedRefresh();
+    });
+}
+...
+</code></pre>
+<p>You can refer lodash&#39;s docs for <a href="https://lodash.com/docs#debounce">a full explanation of how <code>_.debounce()</code> works</a>, but essentially it ensures a function is not called every n milliseconds, in this case 50. The key here is not the specific implementation, but rather that we were able to solve a tricky people fairly easily by using existing solutions instead of rolling our own.</p>
+<p>This same convenience applies to third-party NativeScript modules as well, as they are also stored on npm. For instance, the JustMeme app allows users to share their memes through Facebook, Twitter, SMS, etc, and that functionality is also implemented with an npm module. Here&#39;s the code from the same Meme object:</p>
+<pre><code class="lang-javascript">var socialShare = require(&quot;../../node_modules/nativescript-social-share/social-share&quot;);
+
+function Meme() {
+    ...
+}
+Meme.prototype.share = function() {
+    socialShare.shareImage(this.image);
+}
+...
+</code></pre>
+<p>And with that, JustMeme users can share their creations with the world:</p>
+<p><img src="images/ios-share.png" alt="">
+<img src="images/android-share.png" alt=""></p>
+<p>If you&#39;re wondering what other NativeScript modules are out there, do a <a href="https://www.npmjs.com/search?q=nativescript">search for “nativescript” on npm</a> and look around.</p>
 
 		</div>
 		<hr>
 		<div class="chapter">
 			<h2 id="folder-structure">Folder structure</h2>
-<p>The most contentious religious debates in the software world occur when deciding on naming conventions. Here are the folder and file names that have worked for us.</p>
+<p>Intro...</p>
 <h3 id="folder-structure-overview">Folder structure overview</h3>
 <p>Here is our recommended folder structure:</p>
 <pre><code class="lang-shell">.
@@ -227,36 +187,6 @@ exports.load = function(args) {
 <p>The <code>platforms</code> folder contains NativeScript-generated code for each platform your app runs on. Because this code is generated it doesn&#39;t belong in source control. If you&#39;re a git user you can exclude this folder by adding <code>platforms</code> to your <code>.gitignore</code>.</p>
 <h3 id="exclude-the-node_modules-folder-from-source-control">Exclude the <code>node_modules</code> folder from source control</h3>
 <p>The <code>node_modules</code> folder can be generated from your package.json, so it should also should be excluded from source control. If you&#39;re a git user you can exclude the folder by adding <code>node_modules/</code> to your <code>.gitignore</code>.</p>
-<h3 id="create-an-images-js-helper-file">Create an <code>images.js</code> helper file</h3>
-<p>To avoid duplicating image paths it&#39;s helpful to have a single <code>images.js</code> utility file that contains all image paths that your app needs. As an example, given the folder structure shown above, suppose the <code>images</code> folder contains a <code>logo.png</code> file.</p>
-<pre><code class="lang-shell">.
-└── app
-    └── app
-        ├── app.css
-        ├── app.js
-        └── images
-            └── logo.png
-</code></pre>
-<p>You can then write the following <code>images.js</code> utility that grabs this image&#39;s source:</p>
-<pre><code class="lang-javascript">var imageSource = require( &quot;image-source&quot; );
-
-module.exports = {
-    logo: imageSource.fromFile( &quot;~/app/images/logo.png&quot; )
-};
-</code></pre>
-<p>With this utility in place you can use <code>images.js</code> in your views:</p>
-<pre><code class="lang-javascript">var images = require( &quot;../shared/utils/images&quot; );
-
-exports.load = function( args ) {
-    var page = args.object;
-    page.bindingContext = { logoSource: images.logo };
-}
-</code></pre>
-<p>And uses it in your XML:</p>
-<pre><code class="lang-markup">&lt;Page loaded=&quot;load&quot;&gt;
-    &lt;Image source=&quot;{{ logoSource }}&quot; /&gt;
-&lt;/Page&gt;
-</code></pre>
 
 		</div>
 		<hr>
