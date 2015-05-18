@@ -1,6 +1,6 @@
 ## Folder structure
 
-Intro...
+NativeScript gives you the flexibility to place files pretty much wherever you want.
 
 ### Folder structure overview
 
