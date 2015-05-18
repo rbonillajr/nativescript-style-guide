@@ -150,39 +150,59 @@ Meme.prototype.share = function() {
 		<hr>
 		<div class="chapter">
 			<h2 id="folder-structure">Folder structure</h2>
-<p>NativeScript gives you the flexibility to place files pretty much wherever you want.</p>
+<p>NativeScript gives you the flexibility to place files pretty much wherever you want, but having a few conventions can aid with maintainability, especially on large apps.</p>
 <h3 id="folder-structure-overview">Folder structure overview</h3>
-<p>Here is our recommended folder structure:</p>
+<p>Here is our recommended folder structure, showing a few of the files from the JustMeme app:</p>
 <pre><code class="lang-shell">.
 ├── app
-│   ├── app
-│   │   ├── app.css
-│   │   ├── app.js
-│   │   ├── images
-│   │   │   └── ...
-│   │   ├── lib
-│   │   │   └── ...
-│   │   ├── shared
-│   │   │   ├── css
-│   │   │   │   └── ...
-│   │   │   ├── models
-│   │   │   │   └── ...
-│   │   │   ├── utils
-│   │   │   │   ├── images.js
-│   │   │   │   └── ...
-│   │   │   └── ...
-│   │   ├── views
-│   │   │   └── ...
-│   │   └── ...
-│   ├── App_Resources
-│   │   ├── android
-│   │   └── ios
-│   └── tns_modules
-│       └── ...
+│   └── [[ continued below ]]
+├── node_modules
+│   ├── gulp
+│   ├── gulp-jshint
+│   └── ...
+├── package.json
 └── platforms
     └── ...
 </code></pre>
-<p>The following sections provide more specific advice based on this structure.</p>
+<p>NativeScript enforces the use of a <code>app</code> and <code>platform</code> directories, where <code>app</code> contains your development code and <code>platform</code> contains the platform-specific code NativeScript needs to build native iOS and Android apps.</p>
+<blockquote>
+<p><strong>Note</strong>: If you&#39;re using NativeScript as part of Telerik AppBuilder you won&#39;t have a <code>platforms</code> folder, as AppBuilder performs all iOS and Android builds for you in the cloud, thus removing the need for these files to be locally available on your development machine.</p>
+</blockquote>
+<p>Thus the only thing to note is the <code>package.json</code> file and its associated <code>node_modules</code> directory. </p>
+<pre><code class="lang-shell">.
+├── App_Resources
+│   └── ...
+├── images
+│   ├── background.png
+│   └── ...
+├── lib
+│   └── ...
+├── node_modules
+│   ├── lodash
+│   ├── nativescript-social-share
+│   └── ...
+├── shared
+│   ├── analytics.js
+│   ├── navigation.js
+│   ├── utilities.js
+│   └── ...
+├── tns_modules
+│   └── ...
+├── views
+│   ├── create-meme
+│   │   ├── create-meme.css
+│   │   ├── create-meme.js
+│   │   └── create-meme.xml
+│   ├── home
+│   │   ├── home.css
+│   │   ├── home.js
+│   │   └── home.xml
+│   └── ...
+├── app.css
+├── app.js
+└── package.json
+</code></pre>
+<p>Here&#39;s the intention of each of these directories:</p>
 <h3 id="exclude-the-platforms-folder-from-source-control">Exclude the <code>platforms</code> folder from source control</h3>
 <p>The <code>platforms</code> folder contains NativeScript-generated code for each platform your app runs on. Because this code is generated it doesn&#39;t belong in source control. If you&#39;re a git user you can exclude this folder by adding <code>platforms</code> to your <code>.gitignore</code>.</p>
 <h3 id="exclude-the-node_modules-folder-from-source-control">Exclude the <code>node_modules</code> folder from source control</h3>

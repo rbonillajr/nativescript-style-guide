@@ -2,6 +2,8 @@
 @import "normalize";
 @import "prism";
 
+$nativescript_color: #5854F8;
+
 html {
 	box-sizing: border-box;
 }
@@ -27,13 +29,18 @@ a:hover {
 }
 
 hr {
-	background: #5854F8;
+	background: $nativescript_color;
 	padding: 0.1em;
 	border: none;
 	display: block;
 	margin: 5em 0;
 }
-
+blockquote {
+	border-left-color: $nativescript_color;
+	border-right-style: 5px;
+	border-left-style: solid;
+	padding-left: 1em;
+}
 h1, h2, h3, h4, h5, h6 {
 	font-family: "roboto_slablight", "Helvetica Neue", Helvetica, serif;
 	font-weight: 300;
@@ -50,7 +57,7 @@ h1 {
 	width: 300px;
 }
 h2 strong, h3 strong, h6 strong {
-	color: #5854F8;
+	color: $nativescript_color;
 }
 h2 {
 	margin: 50px 0 40px 0;
@@ -129,7 +136,7 @@ h6 a:link, h6 a:active, h6 a:visited {
 	display: block;
 }
 h5 a:hover, h6 a:hover {
-	color: #5854F8;
+	color: $nativescript_color;
 	text-decoration: underline;
 }
 

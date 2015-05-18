@@ -501,6 +501,12 @@ hr {
   display: block;
   margin: 5em 0; }
 
+blockquote {
+  border-left-color: #5854F8;
+  border-right-style: 5px;
+  border-left-style: solid;
+  padding-left: 1em; }
+
 h1, h2, h3, h4, h5, h6 {
   font-family: "roboto_slablight", "Helvetica Neue", Helvetica, serif;
   font-weight: 300; }
