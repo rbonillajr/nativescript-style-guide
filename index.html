@@ -152,23 +152,21 @@ Meme.prototype.share = function() {
 			<h2 id="folder-structure">Folder structure</h2>
 <p>NativeScript gives you the flexibility to place files pretty much wherever you want, but having a few conventions can aid with maintainability, especially on large apps.</p>
 <h3 id="folder-structure-overview">Folder structure overview</h3>
-<p>Here is our recommended folder structure, showing a few of the files from the JustMeme app:</p>
+<p>Let&#39;s look at the folder structure JustMeme uses from the outside in. Here&#39;s what the structure looks like top level:</p>
 <pre><code class="lang-shell">.
 ├── app
 │   └── [[ continued below ]]
 ├── node_modules
-│   ├── gulp
-│   ├── gulp-jshint
 │   └── ...
 ├── package.json
 └── platforms
     └── ...
 </code></pre>
-<p>NativeScript enforces the use of a <code>app</code> and <code>platform</code> directories, where <code>app</code> contains your development code and <code>platform</code> contains the platform-specific code NativeScript needs to build native iOS and Android apps.</p>
+<p>NativeScript enforces the use of <code>app</code> and <code>platform</code> directories, where <code>app</code> contains your development code and <code>platform</code> contains the platform-specific code NativeScript needs to build native iOS and Android apps.</p>
 <blockquote>
 <p><strong>Note</strong>: If you&#39;re using NativeScript as part of Telerik AppBuilder you won&#39;t have a <code>platforms</code> folder, as AppBuilder performs all iOS and Android builds for you in the cloud, thus removing the need for these files to be locally available on your development machine.</p>
 </blockquote>
-<p>Thus the only thing to note is the <code>package.json</code> file and its associated <code>node_modules</code> directory. </p>
+<p>Next let&#39;s look inside the <code>app</code> directory, where your development code resides. Here&#39;s a simplified version of JustMeme&#39;s structure:</p>
 <pre><code class="lang-shell">.
 ├── App_Resources
 │   └── ...
@@ -176,10 +174,6 @@ Meme.prototype.share = function() {
 │   ├── background.png
 │   └── ...
 ├── lib
-│   └── ...
-├── node_modules
-│   ├── lodash
-│   ├── nativescript-social-share
 │   └── ...
 ├── shared
 │   ├── analytics.js
@@ -203,6 +197,16 @@ Meme.prototype.share = function() {
 └── package.json
 </code></pre>
 <p>Here&#39;s the intention of each of these directories:</p>
+<ul>
+<li><strong>App_Resources</strong>: This is a NativeScript-enforced directory. It contains your platform-specific files such as icons, splash screens and configuration files (e.g. Info.plist, AndroidManifest.xml, and so forth).</li>
+<li><strong>images</strong>: This is where all the images your application uses should live. If you have a lot of images it makes sense to group them into further directories. For instance JustMeme uses <code>icons</code> and <code>templates</code> directories to group its images.</li>
+<li><strong>lib</strong>: This is where third-party libraries that aren&#39;t available on npm should reside. Grouping all third-party libraries makes it easy to exclude these files from linting tools (e.g. JSHint, JSCS).</li>
+<li><strong>shared</strong>: This directory contains all code shared between views. As with images, it makes sense to logically group these files into subdirectories.</li>
+<li><strong>tns_modules</strong>: This is a NativeScript-enforced directory that contains the NativeScript core modules.</li>
+<li><strong>views</strong>: Each view in your app should have a directory in this folder that contains its CSS, JavaScript, and XML files. If you have a large number of views you may wish to create additional subdirectories to group these views.</li>
+</ul>
+<p>The advantage of this approach is that it&#39;s really easy to tell where files should go. Building a new view? That goes in <code>views</code>. Building a model object for use throughout the app? That goes in <code>shared</code>. Want to use a JavaScript library you found on GitHub but isn&#39;t in npm? That goes in <code>lib</code>.</p>
+<p>This approach also means that all your development code lives within the <code>shared</code> and <code>views</code> directories, which makes these files really easy to target with tooling, which is the topic of chapter 3. The remaining sections in this chapter contain additional tips about using this structure.</p>
 <h3 id="exclude-the-platforms-folder-from-source-control">Exclude the <code>platforms</code> folder from source control</h3>
 <p>The <code>platforms</code> folder contains NativeScript-generated code for each platform your app runs on. Because this code is generated it doesn&#39;t belong in source control. If you&#39;re a git user you can exclude this folder by adding <code>platforms</code> to your <code>.gitignore</code>.</p>
 <h3 id="exclude-the-node_modules-folder-from-source-control">Exclude the <code>node_modules</code> folder from source control</h3>
